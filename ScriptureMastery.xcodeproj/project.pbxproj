@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		212AA8781E049F82000374F9 /* SMDB.sqlite2 in Resources */ = {isa = PBXBuildFile; fileRef = 212AA8771E049F82000374F9 /* SMDB.sqlite2 */; };
 		214031BE1DFBC5FF00CA4BEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031BD1DFBC5FF00CA4BEE /* AppDelegate.swift */; };
-		214031C01DFBC5FF00CA4BEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031BF1DFBC5FF00CA4BEE /* ViewController.swift */; };
 		214031C31DFBC5FF00CA4BEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214031C11DFBC5FF00CA4BEE /* Main.storyboard */; };
 		214031C51DFBC5FF00CA4BEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 214031C41DFBC5FF00CA4BEE /* Assets.xcassets */; };
 		214031C81DFBC5FF00CA4BEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214031C61DFBC5FF00CA4BEE /* LaunchScreen.storyboard */; };
 		214031D31DFBC5FF00CA4BEE /* ScriptureMasteryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031D21DFBC5FF00CA4BEE /* ScriptureMasteryTests.swift */; };
 		214031DE1DFBC5FF00CA4BEE /* ScriptureMasteryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031DD1DFBC5FF00CA4BEE /* ScriptureMasteryUITests.swift */; };
+		214031EC1DFBCA0200CA4BEE /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031EB1DFBCA0200CA4BEE /* MasterTableViewController.swift */; };
+		214031EE1DFBCA0A00CA4BEE /* SlaveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031ED1DFBCA0A00CA4BEE /* SlaveTableViewController.swift */; };
+		214031F21DFBCC6300CA4BEE /* ScriptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031F11DFBCC6300CA4BEE /* ScriptureController.swift */; };
+		214031F41DFBD56500CA4BEE /* FullTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031F31DFBD56500CA4BEE /* FullTextViewController.swift */; };
+		214031F61DFBD56E00CA4BEE /* FirstLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031F51DFBD56E00CA4BEE /* FirstLetterViewController.swift */; };
+		214031F81DFBD57C00CA4BEE /* RandomWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031F71DFBD57C00CA4BEE /* RandomWordViewController.swift */; };
+		C2AE2E70EDACBA09430A4528 /* Pods_ScriptureMastery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93279E93E79DB3511E050417 /* Pods_ScriptureMastery.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		212AA8771E049F82000374F9 /* SMDB.sqlite2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SMDB.sqlite2; sourceTree = SOURCE_ROOT; };
 		214031BA1DFBC5FF00CA4BEE /* ScriptureMastery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptureMastery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		214031BD1DFBC5FF00CA4BEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		214031BF1DFBC5FF00CA4BEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		214031C21DFBC5FF00CA4BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		214031C41DFBC5FF00CA4BEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		214031C71DFBC5FF00CA4BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +54,15 @@
 		214031D91DFBC5FF00CA4BEE /* ScriptureMasteryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScriptureMasteryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		214031DD1DFBC5FF00CA4BEE /* ScriptureMasteryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptureMasteryUITests.swift; sourceTree = "<group>"; };
 		214031DF1DFBC5FF00CA4BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		214031EB1DFBCA0200CA4BEE /* MasterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
+		214031ED1DFBCA0A00CA4BEE /* SlaveTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlaveTableViewController.swift; sourceTree = "<group>"; };
+		214031F11DFBCC6300CA4BEE /* ScriptureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptureController.swift; sourceTree = "<group>"; };
+		214031F31DFBD56500CA4BEE /* FullTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FullTextViewController.swift; path = ../FullTextViewController.swift; sourceTree = "<group>"; };
+		214031F51DFBD56E00CA4BEE /* FirstLetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstLetterViewController.swift; path = ../FirstLetterViewController.swift; sourceTree = "<group>"; };
+		214031F71DFBD57C00CA4BEE /* RandomWordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RandomWordViewController.swift; path = ../RandomWordViewController.swift; sourceTree = "<group>"; };
+		8760151D4AC17541A54776F9 /* Pods-ScriptureMastery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScriptureMastery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScriptureMastery/Pods-ScriptureMastery.debug.xcconfig"; sourceTree = "<group>"; };
+		93279E93E79DB3511E050417 /* Pods_ScriptureMastery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScriptureMastery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0E725FD7989B5959D0B7BDB /* Pods-ScriptureMastery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScriptureMastery.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScriptureMastery/Pods-ScriptureMastery.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2AE2E70EDACBA09430A4528 /* Pods_ScriptureMastery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +91,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F1DA9092BA1471A8419831F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93279E93E79DB3511E050417 /* Pods_ScriptureMastery.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		212AA8791E04A04C000374F9 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				212AA8771E049F82000374F9 /* SMDB.sqlite2 */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		212AA87A1E04A05C000374F9 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				214031BD1DFBC5FF00CA4BEE /* AppDelegate.swift */,
+				214031C91DFBC5FF00CA4BEE /* Info.plist */,
+				214031C41DFBC5FF00CA4BEE /* Assets.xcassets */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		212AA87B1E04A070000374F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				214031C11DFBC5FF00CA4BEE /* Main.storyboard */,
+				214031C61DFBC5FF00CA4BEE /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		212AA87C1E04A07E000374F9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				214031EB1DFBCA0200CA4BEE /* MasterTableViewController.swift */,
+				214031ED1DFBCA0A00CA4BEE /* SlaveTableViewController.swift */,
+				214031F31DFBD56500CA4BEE /* FullTextViewController.swift */,
+				214031F51DFBD56E00CA4BEE /* FirstLetterViewController.swift */,
+				214031F71DFBD57C00CA4BEE /* RandomWordViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		212AA87D1E04A095000374F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		212AA87E1E04A09A000374F9 /* ModelController */ = {
+			isa = PBXGroup;
+			children = (
+				214031F11DFBCC6300CA4BEE /* ScriptureController.swift */,
+			);
+			name = ModelController;
+			sourceTree = "<group>";
+		};
 		214031B11DFBC5FF00CA4BEE = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +160,8 @@
 				214031D11DFBC5FF00CA4BEE /* ScriptureMasteryTests */,
 				214031DC1DFBC5FF00CA4BEE /* ScriptureMasteryUITests */,
 				214031BB1DFBC5FF00CA4BEE /* Products */,
+				E3C0C61FAE0E84F0EBEC9247 /* Pods */,
+				1F1DA9092BA1471A8419831F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +178,12 @@
 		214031BC1DFBC5FF00CA4BEE /* ScriptureMastery */ = {
 			isa = PBXGroup;
 			children = (
-				214031BD1DFBC5FF00CA4BEE /* AppDelegate.swift */,
-				214031BF1DFBC5FF00CA4BEE /* ViewController.swift */,
-				214031C11DFBC5FF00CA4BEE /* Main.storyboard */,
-				214031C41DFBC5FF00CA4BEE /* Assets.xcassets */,
-				214031C61DFBC5FF00CA4BEE /* LaunchScreen.storyboard */,
-				214031C91DFBC5FF00CA4BEE /* Info.plist */,
+				212AA87E1E04A09A000374F9 /* ModelController */,
+				212AA87D1E04A095000374F9 /* Model */,
+				212AA87C1E04A07E000374F9 /* ViewController */,
+				212AA87B1E04A070000374F9 /* View */,
+				212AA87A1E04A05C000374F9 /* Other */,
+				212AA8791E04A04C000374F9 /* Database */,
 			);
 			path = ScriptureMastery;
 			sourceTree = "<group>";
@@ -125,6 +206,15 @@
 			path = ScriptureMasteryUITests;
 			sourceTree = "<group>";
 		};
+		E3C0C61FAE0E84F0EBEC9247 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8760151D4AC17541A54776F9 /* Pods-ScriptureMastery.debug.xcconfig */,
+				C0E725FD7989B5959D0B7BDB /* Pods-ScriptureMastery.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +222,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 214031E21DFBC5FF00CA4BEE /* Build configuration list for PBXNativeTarget "ScriptureMastery" */;
 			buildPhases = (
+				3572405C8D77AC55632C0202 /* [CP] Check Pods Manifest.lock */,
 				214031B61DFBC5FF00CA4BEE /* Sources */,
 				214031B71DFBC5FF00CA4BEE /* Frameworks */,
 				214031B81DFBC5FF00CA4BEE /* Resources */,
+				691C8977349856A4A8E588EE /* [CP] Embed Pods Frameworks */,
+				3306EFE6B5C30D43A9E121C8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +286,7 @@
 				TargetAttributes = {
 					214031B91DFBC5FF00CA4BEE = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = D8BVW7B3PF;
 						ProvisioningStyle = Automatic;
 					};
 					214031CD1DFBC5FF00CA4BEE = {
@@ -232,6 +326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212AA8781E049F82000374F9 /* SMDB.sqlite2 in Resources */,
 				214031C81DFBC5FF00CA4BEE /* LaunchScreen.storyboard in Resources */,
 				214031C51DFBC5FF00CA4BEE /* Assets.xcassets in Resources */,
 				214031C31DFBC5FF00CA4BEE /* Main.storyboard in Resources */,
@@ -254,13 +349,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3306EFE6B5C30D43A9E121C8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScriptureMastery/Pods-ScriptureMastery-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3572405C8D77AC55632C0202 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		691C8977349856A4A8E588EE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScriptureMastery/Pods-ScriptureMastery-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		214031B61DFBC5FF00CA4BEE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				214031C01DFBC5FF00CA4BEE /* ViewController.swift in Sources */,
+				214031F41DFBD56500CA4BEE /* FullTextViewController.swift in Sources */,
+				214031F21DFBCC6300CA4BEE /* ScriptureController.swift in Sources */,
+				214031F81DFBD57C00CA4BEE /* RandomWordViewController.swift in Sources */,
+				214031EC1DFBCA0200CA4BEE /* MasterTableViewController.swift in Sources */,
 				214031BE1DFBC5FF00CA4BEE /* AppDelegate.swift in Sources */,
+				214031EE1DFBCA0A00CA4BEE /* SlaveTableViewController.swift in Sources */,
+				214031F61DFBD56E00CA4BEE /* FirstLetterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,9 +558,12 @@
 		};
 		214031E31DFBC5FF00CA4BEE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8760151D4AC17541A54776F9 /* Pods-ScriptureMastery.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = D8BVW7B3PF;
 				INFOPLIST_FILE = ScriptureMastery/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.precisioncodes.ScriptureMastery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -422,9 +573,12 @@
 		};
 		214031E41DFBC5FF00CA4BEE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0E725FD7989B5959D0B7BDB /* Pods-ScriptureMastery.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = D8BVW7B3PF;
 				INFOPLIST_FILE = ScriptureMastery/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.precisioncodes.ScriptureMastery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -505,6 +659,7 @@
 				214031E41DFBC5FF00CA4BEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		214031E51DFBC5FF00CA4BEE /* Build configuration list for PBXNativeTarget "ScriptureMasteryTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +668,7 @@
 				214031E71DFBC5FF00CA4BEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		214031E81DFBC5FF00CA4BEE /* Build configuration list for PBXNativeTarget "ScriptureMasteryUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +677,7 @@
 				214031EA1DFBC5FF00CA4BEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
