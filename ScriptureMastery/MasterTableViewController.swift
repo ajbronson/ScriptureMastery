@@ -10,8 +10,33 @@ import UIKit
 
 class MasterTableViewController: UITableViewController {
     
+    var volumes: [Volume]?
+    var greenStars: [Book]?
+    var yellowStars: [Book]?
+    var blueStars: [Book]?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.volumes = ScriptureController.shared.volumes()
+        self.volumes?.append(Volume(id: 0, name: "Retired Scrip. Masteries", retired: true))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.greenStars = ScriptureController.shared.greenStars()
+        self.blueStars = ScriptureController.shared.blueStars()
+        self.yellowStars = ScriptureController.shared.yellowStars()
+        tableView.reloadData()
+        navigationController?.toolbar.isHidden = true
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        if let green = greenStars,
+            let blue = blueStars,
+            let yellow = yellowStars, green.count > 0 || blue.count > 0 || yellow.count > 0 {
+            return 2
+        }
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -28,9 +53,28 @@ class MasterTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return ScriptureController.shared.masterList.count
+            return volumes?.count ?? 0
         case 1:
-            return 3
+            
+            var starCount = 0
+            
+            if let green = greenStars,
+                green.count > 0 {
+                starCount += 1
+            }
+            
+            if let blue = blueStars,
+                blue.count > 0 {
+                starCount += 1
+            }
+            
+            if let yellow = yellowStars,
+                yellow.count > 0 {
+                starCount += 1
+            }
+            
+            return starCount
+            
         default:
             return 0
         }
@@ -40,11 +84,11 @@ class MasterTableViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "masterCell") else { return UITableViewCell() }
-            cell.textLabel?.text = ScriptureController.shared.masterList[indexPath.row]
+            cell.textLabel?.text = volumes?[indexPath.row].name
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "masterCell") else { return UITableViewCell() }
-            cell.textLabel?.text = "Star"
+            cell.textLabel?.text = getStar(row: indexPath.row).0
             return cell
         default:
             return UITableViewCell()
@@ -54,9 +98,58 @@ class MasterTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSlaveView" {
             if let index = tableView.indexPathForSelectedRow,
+                let volumes = volumes,
                 let destinationVC = segue.destination as? SlaveTableViewController {
-                destinationVC.updateTitle(title: ScriptureController.shared.masterList[index.row])
+                if index.section == 0 {
+                   destinationVC.updateSlave(volume: volumes[index.row])
+                } else if index.section == 1 {
+                    let starToPass = getStar(row: index.row)
+                    if let books = starToPass.1 {
+                        destinationVC.updateSlaveFromStar(books: books, title: starToPass.0, starColor: starToPass.2)
+                    }
+                }
             }
         }
     }
+    
+    func getStar(row: Int) -> (String, [Book]?, Star.Color) {
+        var rows: [Int] = []
+        if let green = greenStars,
+            green.count > 0 {
+            rows.append(0)
+        }
+        
+        if let blue = blueStars,
+            blue.count > 0 {
+            rows.append(1)
+        }
+        
+        if let yellow = yellowStars,
+            yellow.count > 0 {
+            rows.append(2)
+        }
+        
+        if row == 0 {
+            if rows.contains(0) {
+                return ("Green Stars", greenStars, Star.Color.Green)
+            } else if rows.contains(1) {
+                return ("Blue Stars", blueStars, Star.Color.Blue)
+            } else if rows.contains(2) {
+                return ("Yellow Stars", yellowStars, Star.Color.Yellow)
+            }
+        } else if row == 1 {
+            if rows.contains(0) && rows.contains(1) {
+                return ("Blue Stars", blueStars, Star.Color.Blue)
+            }
+            else if rows.contains(2) {
+                return ("Yellow Stars", yellowStars, Star.Color.Yellow)
+            }
+            
+        } else if row == 2 {
+            return ("Yellow Stars", yellowStars, Star.Color.Yellow)
+        }
+        return ("", nil, Star.Color.White)
+    }
+    
+    
 }

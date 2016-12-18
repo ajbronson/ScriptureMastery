@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		212AA8781E049F82000374F9 /* SMDB.sqlite2 in Resources */ = {isa = PBXBuildFile; fileRef = 212AA8771E049F82000374F9 /* SMDB.sqlite2 */; };
 		214031BE1DFBC5FF00CA4BEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031BD1DFBC5FF00CA4BEE /* AppDelegate.swift */; };
 		214031C31DFBC5FF00CA4BEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214031C11DFBC5FF00CA4BEE /* Main.storyboard */; };
 		214031C51DFBC5FF00CA4BEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 214031C41DFBC5FF00CA4BEE /* Assets.xcassets */; };
@@ -20,7 +19,19 @@
 		214031F41DFBD56500CA4BEE /* FullTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031F31DFBD56500CA4BEE /* FullTextViewController.swift */; };
 		214031F61DFBD56E00CA4BEE /* FirstLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031F51DFBD56E00CA4BEE /* FirstLetterViewController.swift */; };
 		214031F81DFBD57C00CA4BEE /* RandomWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031F71DFBD57C00CA4BEE /* RandomWordViewController.swift */; };
-		C2AE2E70EDACBA09430A4528 /* Pods_ScriptureMastery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93279E93E79DB3511E050417 /* Pods_ScriptureMastery.framework */; };
+		2163C68B1E065D0E0069E198 /* LargeSlaveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163C68A1E065D0E0069E198 /* LargeSlaveCollectionViewCell.swift */; };
+		2163C68D1E07110A0069E198 /* HelpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163C68C1E07110A0069E198 /* HelpTableViewController.swift */; };
+		21AA852F1E05F7BA00E32F85 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AA852E1E05F7BA00E32F85 /* File.swift */; };
+		21AA85311E064C7B00E32F85 /* SlaveCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AA85301E064C7B00E32F85 /* SlaveCollectionViewController.swift */; };
+		21BA700E1E064D79002B7472 /* SlaveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BA700D1E064D79002B7472 /* SlaveCollectionViewCell.swift */; };
+		21CEBDE71E04E8910097E6E5 /* SMDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 21CEBDE61E04E8910097E6E5 /* SMDB.db */; };
+		21CEBDE91E04E9A50097E6E5 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CEBDE81E04E9A50097E6E5 /* Volume.swift */; };
+		21CEBDEB1E04EBF00097E6E5 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CEBDEA1E04EBF00097E6E5 /* Book.swift */; };
+		21DC0F391E05C08900C879D5 /* SlaveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DC0F381E05C08900C879D5 /* SlaveTableViewCell.swift */; };
+		21DC0F3B1E05C37600C879D5 /* SlaveTableViewCellNoHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DC0F3A1E05C37600C879D5 /* SlaveTableViewCellNoHint.swift */; };
+		21F6E5CE1E04EFE0007BDA50 /* TextTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6E5CD1E04EFE0007BDA50 /* TextTabBar.swift */; };
+		21F6E5D01E04F475007BDA50 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6E5CF1E04F475007BDA50 /* StringHelper.swift */; };
+		21F6E5D31E050731007BDA50 /* SectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6E5D21E050731007BDA50 /* SectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +52,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		212AA8771E049F82000374F9 /* SMDB.sqlite2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SMDB.sqlite2; sourceTree = SOURCE_ROOT; };
 		214031BA1DFBC5FF00CA4BEE /* ScriptureMastery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptureMastery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		214031BD1DFBC5FF00CA4BEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		214031C21DFBC5FF00CA4BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +70,19 @@
 		214031F31DFBD56500CA4BEE /* FullTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FullTextViewController.swift; path = ../FullTextViewController.swift; sourceTree = "<group>"; };
 		214031F51DFBD56E00CA4BEE /* FirstLetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstLetterViewController.swift; path = ../FirstLetterViewController.swift; sourceTree = "<group>"; };
 		214031F71DFBD57C00CA4BEE /* RandomWordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RandomWordViewController.swift; path = ../RandomWordViewController.swift; sourceTree = "<group>"; };
+		2163C68A1E065D0E0069E198 /* LargeSlaveCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeSlaveCollectionViewCell.swift; sourceTree = "<group>"; };
+		2163C68C1E07110A0069E198 /* HelpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewController.swift; sourceTree = "<group>"; };
+		21AA852E1E05F7BA00E32F85 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		21AA85301E064C7B00E32F85 /* SlaveCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlaveCollectionViewController.swift; sourceTree = "<group>"; };
+		21BA700D1E064D79002B7472 /* SlaveCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlaveCollectionViewCell.swift; sourceTree = "<group>"; };
+		21CEBDE61E04E8910097E6E5 /* SMDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = SMDB.db; sourceTree = "<group>"; };
+		21CEBDE81E04E9A50097E6E5 /* Volume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volume.swift; sourceTree = "<group>"; };
+		21CEBDEA1E04EBF00097E6E5 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		21DC0F381E05C08900C879D5 /* SlaveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlaveTableViewCell.swift; sourceTree = "<group>"; };
+		21DC0F3A1E05C37600C879D5 /* SlaveTableViewCellNoHint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlaveTableViewCellNoHint.swift; sourceTree = "<group>"; };
+		21F6E5CD1E04EFE0007BDA50 /* TextTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextTabBar.swift; sourceTree = "<group>"; };
+		21F6E5CF1E04F475007BDA50 /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
+		21F6E5D21E050731007BDA50 /* SectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewController.swift; sourceTree = "<group>"; };
 		8760151D4AC17541A54776F9 /* Pods-ScriptureMastery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScriptureMastery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScriptureMastery/Pods-ScriptureMastery.debug.xcconfig"; sourceTree = "<group>"; };
 		93279E93E79DB3511E050417 /* Pods_ScriptureMastery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScriptureMastery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E725FD7989B5959D0B7BDB /* Pods-ScriptureMastery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScriptureMastery.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScriptureMastery/Pods-ScriptureMastery.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,7 +93,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2AE2E70EDACBA09430A4528 /* Pods_ScriptureMastery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +124,7 @@
 		212AA8791E04A04C000374F9 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				212AA8771E049F82000374F9 /* SMDB.sqlite2 */,
+				21CEBDE61E04E8910097E6E5 /* SMDB.db */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -131,9 +153,14 @@
 			children = (
 				214031EB1DFBCA0200CA4BEE /* MasterTableViewController.swift */,
 				214031ED1DFBCA0A00CA4BEE /* SlaveTableViewController.swift */,
+				21AA85301E064C7B00E32F85 /* SlaveCollectionViewController.swift */,
 				214031F31DFBD56500CA4BEE /* FullTextViewController.swift */,
 				214031F51DFBD56E00CA4BEE /* FirstLetterViewController.swift */,
 				214031F71DFBD57C00CA4BEE /* RandomWordViewController.swift */,
+				21F6E5D21E050731007BDA50 /* SectionViewController.swift */,
+				21F6E5CD1E04EFE0007BDA50 /* TextTabBar.swift */,
+				2163C68C1E07110A0069E198 /* HelpTableViewController.swift */,
+				21DC0F3C1E05C80D00C879D5 /* CustomTableViewCell */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -141,6 +168,9 @@
 		212AA87D1E04A095000374F9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				21CEBDEA1E04EBF00097E6E5 /* Book.swift */,
+				21CEBDE81E04E9A50097E6E5 /* Volume.swift */,
+				21AA852E1E05F7BA00E32F85 /* File.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -178,6 +208,7 @@
 		214031BC1DFBC5FF00CA4BEE /* ScriptureMastery */ = {
 			isa = PBXGroup;
 			children = (
+				21F6E5D11E04F47B007BDA50 /* Helpers */,
 				212AA87E1E04A09A000374F9 /* ModelController */,
 				212AA87D1E04A095000374F9 /* Model */,
 				212AA87C1E04A07E000374F9 /* ViewController */,
@@ -204,6 +235,25 @@
 				214031DF1DFBC5FF00CA4BEE /* Info.plist */,
 			);
 			path = ScriptureMasteryUITests;
+			sourceTree = "<group>";
+		};
+		21DC0F3C1E05C80D00C879D5 /* CustomTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				21BA700D1E064D79002B7472 /* SlaveCollectionViewCell.swift */,
+				21DC0F381E05C08900C879D5 /* SlaveTableViewCell.swift */,
+				21DC0F3A1E05C37600C879D5 /* SlaveTableViewCellNoHint.swift */,
+				2163C68A1E065D0E0069E198 /* LargeSlaveCollectionViewCell.swift */,
+			);
+			name = CustomTableViewCell;
+			sourceTree = "<group>";
+		};
+		21F6E5D11E04F47B007BDA50 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				21F6E5CF1E04F475007BDA50 /* StringHelper.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		E3C0C61FAE0E84F0EBEC9247 /* Pods */ = {
@@ -281,7 +331,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "AJ Bronson";
 				TargetAttributes = {
 					214031B91DFBC5FF00CA4BEE = {
@@ -326,8 +376,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212AA8781E049F82000374F9 /* SMDB.sqlite2 in Resources */,
 				214031C81DFBC5FF00CA4BEE /* LaunchScreen.storyboard in Resources */,
+				21CEBDE71E04E8910097E6E5 /* SMDB.db in Resources */,
 				214031C51DFBC5FF00CA4BEE /* Assets.xcassets in Resources */,
 				214031C31DFBC5FF00CA4BEE /* Main.storyboard in Resources */,
 			);
@@ -402,13 +452,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F6E5CE1E04EFE0007BDA50 /* TextTabBar.swift in Sources */,
+				2163C68D1E07110A0069E198 /* HelpTableViewController.swift in Sources */,
 				214031F41DFBD56500CA4BEE /* FullTextViewController.swift in Sources */,
+				21F6E5D01E04F475007BDA50 /* StringHelper.swift in Sources */,
 				214031F21DFBCC6300CA4BEE /* ScriptureController.swift in Sources */,
+				21AA85311E064C7B00E32F85 /* SlaveCollectionViewController.swift in Sources */,
 				214031F81DFBD57C00CA4BEE /* RandomWordViewController.swift in Sources */,
 				214031EC1DFBCA0200CA4BEE /* MasterTableViewController.swift in Sources */,
+				21DC0F391E05C08900C879D5 /* SlaveTableViewCell.swift in Sources */,
+				21F6E5D31E050731007BDA50 /* SectionViewController.swift in Sources */,
 				214031BE1DFBC5FF00CA4BEE /* AppDelegate.swift in Sources */,
+				21DC0F3B1E05C37600C879D5 /* SlaveTableViewCellNoHint.swift in Sources */,
+				21AA852F1E05F7BA00E32F85 /* File.swift in Sources */,
+				2163C68B1E065D0E0069E198 /* LargeSlaveCollectionViewCell.swift in Sources */,
+				21CEBDEB1E04EBF00097E6E5 /* Book.swift in Sources */,
 				214031EE1DFBCA0A00CA4BEE /* SlaveTableViewController.swift in Sources */,
 				214031F61DFBD56E00CA4BEE /* FirstLetterViewController.swift in Sources */,
+				21BA700E1E064D79002B7472 /* SlaveCollectionViewCell.swift in Sources */,
+				21CEBDE91E04E9A50097E6E5 /* Volume.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +543,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -531,6 +594,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -560,6 +624,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8760151D4AC17541A54776F9 /* Pods-ScriptureMastery.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = D8BVW7B3PF;
 				INFOPLIST_FILE = ScriptureMastery/Info.plist;
@@ -575,6 +640,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C0E725FD7989B5959D0B7BDB /* Pods-ScriptureMastery.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = D8BVW7B3PF;
 				INFOPLIST_FILE = ScriptureMastery/Info.plist;
