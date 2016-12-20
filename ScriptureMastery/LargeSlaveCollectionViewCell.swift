@@ -12,14 +12,26 @@ class LargeSlaveCollectionViewCell: UIViewController {
     
     @IBOutlet weak var largeWebView: UIWebView!
     @IBOutlet weak var largeView: UIView!
-    
-    override func viewDidAppear(_ animated: Bool) {
-        largeWebView.loadHTMLString("Hello", baseURL: nil)
-    }
+    @IBOutlet weak var titleLabel: UILabel!
+    var book: Book?
     
     override func viewDidLoad() {
         //TODO: write these supers everywhere
         super.viewDidLoad()
-        print("test")
+        largeView.layer.cornerRadius = 5
+        if let book = book {
+            largeWebView.loadHTMLString(book.text, baseURL: nil)
+            titleLabel.text = book.reference
+        }
+        
+        self.view.backgroundColor = UIColor(colorLiteralRed: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 0.7)  
+    }
+    
+    func updateWith(book: Book) {
+        self.book = book
+    }
+    
+    @IBAction func userTappedScreen(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: true, completion: nil)
     }
 }

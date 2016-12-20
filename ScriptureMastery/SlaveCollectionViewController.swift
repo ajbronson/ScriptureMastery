@@ -40,8 +40,9 @@ class SlaveCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected")
-        test(indexPath: indexPath)
+        if let cell = collectionView.cellForItem(at: indexPath) as? SlaveCollectionViewCell{
+            UIView.transition(with: cell.customView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+        }
     }
     
     @IBAction func showHintButtonTapped(_ sender: UIBarButtonItem) {
@@ -54,81 +55,14 @@ class SlaveCollectionViewController: UICollectionViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func flipCard() {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LargeCollectionCell") as? LargeSlaveCollectionViewCell,
-            let mainWindow = UIApplication.shared.delegate?.window {
-            mainWindow?.addSubview(vc.view)
-            //navigationController?.pushViewController(vc, animated: true)
-        }
-//        if  {
-//            mainWindow?.addSubview(<#T##view: UIView##UIView#>)
-//        }
-    }
-    
-    
-    func test(indexPath: IndexPath) {
-        if let cell = collectionView?.cellForItem(at: indexPath) as? SlaveCollectionViewCell,
-            let books = books {
-            //books[indexPath.row].faceUp = !books[indexPath.row].faceUp
-            
-            UIView.transition(
-                with: cell.customView,
-                duration: 0.5,
-                options: .transitionFlipFromLeft,
-                animations: {
-                    cell.faceUp = !cell.faceUp
-                    cell.updateWith(book: books[indexPath.row], showHints: self.showHints)
-                    //rookCell.rookCardView.faceUp = !rookCell.rookCardView.faceUp
-                    //rookCell.rookCardView.setNeedsDisplay()
-            },
-                completion: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toLargeCell" {
+            if let destinationVC = segue.destination as? LargeSlaveCollectionViewCell,
+                let index = collectionView?.indexPathsForSelectedItems,
+                let indexPath = index.first,
+                let books = books {
+                destinationVC.updateWith(book: books[indexPath.row])
+            }
         }
     }
 }
-
-
-
-
-
-//– (void)flipCard
-//    {
-//        // grap the screen size and create a view with the same frame
-//        // set its background to clear so it can be animated
-//        UIWindow *mainWindow = [[[UIApplicationsharedApplication] delegate] window];
-//        self.modalView = [[UIView alloc] initWithFrame:mainWindow.frame];
-//        self.modalView.backgroundColor = [UIColorclearColor];
-//        [mainWindow addSubview:self.modalView];
-//        
-//        // remove the tapToPresentCardGesture
-//        // then add the tapToHideCardGesture both to the cell and the modal view
-//        [self.contentView removeGestureRecognizer:self.tapToPresentCardGesture];
-//        [self.contentView addGestureRecognizer:self.tapToHideCardGesture];
-//        [self.modalView addGestureRecognizer:self.tapToHideCardGesture];
-//        
-//        // translate the frame of the cell to the main window
-//        self.originalFrame = self.frame;
-//        CGPoint translatedOrigin = [self convertPoint:self.bounds.origin toView:self.modalView];
-//        self.translatedFrame = CGRectMake(translatedOrigin.x, translatedOrigin.y, self.frame.size.width, self.frame.size.height);
-//        self.frame = self.translatedFrame;
-//        
-//        // add the cell to the modalView
-//        [self.modalView addSubview:self];
-//        
-//        // flip the contentView while repositioning the actual cell view
-//        [UIViewtransitionWithView:self.contentView
-//            duration:0.5
-//            options:UIViewAnimationOptionTransitionFlipFromLeft
-//            
-//            animations:^{
-//                
-//                // animate the backgroundColor of the modalView to a semi-transparent black
-//                self.modalView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.75];
-//                
-//                // move the cell to the center of the screen
-//                self.center = mainWindow.center;
-//                
-//                // change the imageView to the card image
-//                [self.cardImageView setImage:[UIImage imageNamed:@”AC”]];
-//                
-//            } completion:nil];
-//}
