@@ -27,7 +27,6 @@ class FullTextViewController: UIViewController {
             self.book = book
             self.tabBarController?.title = book.reference
             wordWebView.loadHTMLString(book.text, baseURL: nil)
-            tabBarController
         }
         
         speechSlider.maximumValue = 2.0
