@@ -8,11 +8,15 @@
 
 import UIKit
 
-class RandomWordViewController: UIViewController {
+class RandomWordViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var wordTextField: UITextField!
     @IBOutlet weak var wordSlider: UISlider!
     @IBOutlet weak var wordWebView: UIWebView!
+    @IBOutlet weak var removeButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
+    
+    
     var bookText: String = ""
     var currentText: [String] = ["", ""]
     var indexesRemoved:[Int] = []
@@ -23,7 +27,8 @@ class RandomWordViewController: UIViewController {
         wordSlider.minimumValue = 1
         wordSlider.setValue(5.0, animated: false)
         wordTextField.text = "5"
-        
+        removeButton.layer.cornerRadius = 5
+        resetButton.layer.cornerRadius = 5
         currentText = bookText.getStringArray()
         
         if let parentVC = parent as? TextTabBar {
@@ -34,6 +39,11 @@ class RandomWordViewController: UIViewController {
                 reloadHTML()
             }
         }
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
+        wordWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
     
     func reloadHTML() {

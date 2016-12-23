@@ -8,12 +8,14 @@
 
 import UIKit
 
-class SectionViewController: UIViewController {
+class SectionViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - Properties 
     
     @IBOutlet weak var sectionWebView: UIWebView!
     @IBOutlet weak var displayingLabel: UILabel!
+    @IBOutlet weak var removeButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
     var sections: [String] = []
     var displayingSections = 0
     var firstLetterOnly = false
@@ -22,6 +24,8 @@ class SectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        removeButton.layer.cornerRadius = 5
+        addButton.layer.cornerRadius = 5
         if let parentVC = parent as? TextTabBar,
             let book = parentVC.book {
             self.tabBarController?.title = book.reference
@@ -43,6 +47,11 @@ class SectionViewController: UIViewController {
             }
         }
         sectionWebView.loadHTMLString(stringToShow, baseURL: nil)
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
+        sectionWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
     
     func updateDisplaying() {

@@ -9,11 +9,14 @@
 import UIKit
 import AVFoundation
 
-class FullTextViewController: UIViewController {
+class FullTextViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var wordWebView: UIWebView!
     @IBOutlet weak var speechSlider: UISlider!
     @IBOutlet weak var speechTextField: UITextField!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    
     let synthesizer = AVSpeechSynthesizer()
     var rate: Double = 0.5
     var utterance: AVSpeechUtterance?
@@ -22,6 +25,8 @@ class FullTextViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        playButton.layer.cornerRadius = 5
+        stopButton.layer.cornerRadius = 5
         if let parentVC = parent as? TextTabBar,
             let book = parentVC.book {
             self.book = book
@@ -33,7 +38,11 @@ class FullTextViewController: UIViewController {
         speechSlider.minimumValue = 0.1
         speechSlider.setValue(1.0, animated: false)
         updateTextField(value: 1.0)
-
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
+        wordWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
     
     func updateTextField(value: Double) {

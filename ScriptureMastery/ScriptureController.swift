@@ -16,6 +16,7 @@ class ScriptureController {
     struct Constant {
         static let fileName = "SMDB"
         static let fileExtension = "db"
+        static let fontSize = "fontSize"
     }
     
     //MARK: - Singleton

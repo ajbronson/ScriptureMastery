@@ -19,6 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="separatorColor" red="0.72298090159999995" green="0.91797962860000004" blue="0.73182746590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Feedback" id="bpT-CM-tKO">
                                 <cells>
@@ -26,7 +27,7 @@
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iPz-NE-94b" id="x4L-nG-U7R">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Suggestions/Feedback? I would love to hear from you! Click the email below to send me a message." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxu-AR-Juc">
@@ -49,7 +50,7 @@
                                         <rect key="frame" x="0.0" y="126.5" width="375" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LAO-Cl-cLu" id="CI6-UP-dUN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="62.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSy-t8-6xe">
@@ -69,13 +70,59 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Font Size" id="zPe-Cz-orV">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="73" id="OvG-ec-UDk">
+                                        <rect key="frame" x="0.0" y="245.5" width="375" height="73"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OvG-ec-UDk" id="Vx0-RA-8ux">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="72.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="50" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Glq-ai-e5T">
+                                                    <rect key="frame" x="211" y="21.5" width="54" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Bxm-SE-dfp">
+                                                    <rect key="frame" x="273" y="22" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="fontStepperTapped:" destination="1r1-bF-nXm" eventType="valueChanged" id="TMy-9k-zC1"/>
+                                                    </connections>
+                                                </stepper>
+                                                <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUk-9e-OUm">
+                                                    <rect key="frame" x="8" y="8" width="185" height="56"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="185" id="dpd-1i-Cd8"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="1r1-bF-nXm" id="1X5-tY-UYT"/>
+                                                    </connections>
+                                                </webView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cUk-9e-OUm" firstAttribute="leading" secondItem="Vx0-RA-8ux" secondAttribute="leadingMargin" id="AUG-Np-iZe"/>
+                                                <constraint firstItem="Bxm-SE-dfp" firstAttribute="leading" secondItem="Glq-ai-e5T" secondAttribute="trailing" constant="8" id="E4L-S5-bFc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Bxm-SE-dfp" secondAttribute="trailing" id="U9u-yV-DyD"/>
+                                                <constraint firstItem="cUk-9e-OUm" firstAttribute="top" secondItem="Vx0-RA-8ux" secondAttribute="topMargin" id="UoS-lc-6gD"/>
+                                                <constraint firstItem="Glq-ai-e5T" firstAttribute="centerY" secondItem="Vx0-RA-8ux" secondAttribute="centerY" id="hrZ-gq-fCG"/>
+                                                <constraint firstItem="Bxm-SE-dfp" firstAttribute="centerY" secondItem="Vx0-RA-8ux" secondAttribute="centerY" id="oiU-iw-TrJ"/>
+                                                <constraint firstItem="Glq-ai-e5T" firstAttribute="leading" secondItem="cUk-9e-OUm" secondAttribute="trailing" constant="18" id="pvS-dZ-eo5"/>
+                                                <constraint firstItem="cUk-9e-OUm" firstAttribute="bottom" secondItem="Vx0-RA-8ux" secondAttribute="bottomMargin" id="vk5-Ar-Jdp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Hints" id="khC-V8-JKo">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="helpCell" rowHeight="194" id="DvT-mb-P5k">
-                                        <rect key="frame" x="0.0" y="245.5" width="375" height="194"/>
+                                        <rect key="frame" x="0.0" y="374.5" width="375" height="194"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="DvT-mb-P5k" id="R76-Xb-VMz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="193"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="193.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="cny-Hk-bXm">
@@ -119,7 +166,7 @@
                                                         <constraint firstItem="36Y-Up-1xo" firstAttribute="width" secondItem="36Y-Up-1xo" secondAttribute="height" multiplier="1:1" id="vm9-di-tST"/>
                                                     </constraints>
                                                 </stackView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wi1-pY-VDN">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wi1-pY-VDN">
                                                     <rect key="frame" x="8" y="56" width="359" height="129.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <string key="text">Stars can be used for whatever you would like.  Tagging a scripture with a Blue Star could mean you want to review it weekly.  A yellow star could mean you don't have the scripture memorized, and want it to be in a "to do" list. The white star is the default, signaling no selection.  Use the stars for whatever helps you the most.</string>
@@ -139,13 +186,13 @@
                                         <inset key="separatorInset" minX="50" minY="0.0" maxX="50" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="helpCell" rowHeight="171" id="FWw-pl-H6x">
-                                        <rect key="frame" x="0.0" y="439.5" width="375" height="171"/>
+                                        <rect key="frame" x="0.0" y="568.5" width="375" height="171"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FWw-pl-H6x" id="Zf4-2i-Jlu">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="170.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRf-qJ-dY9">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRf-qJ-dY9">
                                                     <rect key="frame" x="8" y="8" width="359" height="154.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <string key="text">In the first screen that appears at launch, you will see a list under "Categories", and if you have any stars selected, "Stars". Selecting an item under "Categories" will show you a list of Scripture Masteries under that selection.  Clicking the star here will cycle through all of the available stars, copying the scripture to one of the "Stars" sections on the main screen. Practice by clicking the star below:</string>
@@ -166,10 +213,10 @@
                             <tableViewSection headerTitle="" id="KP6-Gi-QJe">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="slaveCell" id="827-sC-nLG" customClass="SlaveTableViewCell" customModule="ScriptureMastery" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="646.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="775.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="827-sC-nLG" id="IbM-d1-mQv">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moses 1:39" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P71-dD-SVg">
@@ -186,7 +233,6 @@
                                                     </constraints>
                                                     <state key="normal" image="BlueStar"/>
                                                     <connections>
-                                                        <action selector="starButtonTapped:" destination="827-sC-nLG" eventType="touchUpInside" id="hdO-4B-cUI"/>
                                                         <action selector="starButtonTapped:" destination="1r1-bF-nXm" eventType="touchUpInside" id="jhi-M2-4HD"/>
                                                     </connections>
                                                 </button>
@@ -218,19 +264,18 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="" id="16U-cZ-BsI">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="202" id="bXm-gV-uWV">
-                                        <rect key="frame" x="0.0" y="726.5" width="375" height="202"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="139" id="bXm-gV-uWV">
+                                        <rect key="frame" x="0.0" y="855.5" width="375" height="139"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="bXm-gV-uWV" id="rKw-hI-mJQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="138.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcI-Vf-14Q">
-                                                    <rect key="frame" x="8" y="8" width="359" height="185.5"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcI-Vf-14Q">
+                                                    <rect key="frame" x="8" y="8" width="359" height="122.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <mutableString key="text">From the main screen, selecting an item under the "Stars" section will take you to a similar view. However, when the star is clicked here, it removes the selection completely, converting it to a white star as opposed to cycling through the available stars. 
-Clicking the stars in any of the memorization views (Full Text, First Letters, Random Words, Sections) will always cycle through the available stars, no matter if coming from the "Categories" or "Stars" views. 
-</mutableString>
+                                                    <string key="text">From the main screen, selecting an item under the "Stars" section will take you to a similar view. However, when the star is clicked here, it removes the selection completely, converting it to a white star as opposed to cycling through the available stars.  Practice below:
+</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -245,13 +290,92 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="" id="MA9-u7-9la">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="slaveCell" id="4YI-rq-VLS" customClass="SlaveTableViewCell" customModule="ScriptureMastery" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1030.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4YI-rq-VLS" id="Nik-zV-SXQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moses 1:39" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTj-76-CP0">
+                                                    <rect key="frame" x="19" y="6" width="240" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydj-ui-tAK">
+                                                    <rect key="frame" x="276" y="-4" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="MZu-Sj-q1z"/>
+                                                        <constraint firstAttribute="width" secondItem="ydj-ui-tAK" secondAttribute="height" multiplier="1:1" id="vYb-fx-rof"/>
+                                                    </constraints>
+                                                    <state key="normal" image="GreenStar"/>
+                                                    <connections>
+                                                        <action selector="secondStarButtonTapped:" destination="1r1-bF-nXm" eventType="touchUpInside" id="mO4-7E-rbH"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work and glory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cup-RJ-drY">
+                                                    <rect key="frame" x="19" y="27" width="240" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ydj-ui-tAK" firstAttribute="centerY" secondItem="Nik-zV-SXQ" secondAttribute="centerY" id="2mc-fK-TML"/>
+                                                <constraint firstItem="ydj-ui-tAK" firstAttribute="leading" secondItem="Cup-RJ-drY" secondAttribute="trailing" constant="17" id="Jv2-qT-HAr"/>
+                                                <constraint firstItem="Cup-RJ-drY" firstAttribute="top" secondItem="fTj-76-CP0" secondAttribute="bottom" id="Ype-24-aU6"/>
+                                                <constraint firstItem="Cup-RJ-drY" firstAttribute="leading" secondItem="Nik-zV-SXQ" secondAttribute="leadingMargin" constant="11" id="Zb7-Jx-y4L"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ydj-ui-tAK" secondAttribute="trailing" constant="8" id="htx-M8-h6R"/>
+                                                <constraint firstItem="fTj-76-CP0" firstAttribute="top" secondItem="Nik-zV-SXQ" secondAttribute="topMargin" constant="-2" id="kC6-G0-xK8"/>
+                                                <constraint firstItem="fTj-76-CP0" firstAttribute="leading" secondItem="Nik-zV-SXQ" secondAttribute="leadingMargin" constant="11" id="lo3-aI-KjC"/>
+                                                <constraint firstItem="ydj-ui-tAK" firstAttribute="leading" secondItem="fTj-76-CP0" secondAttribute="trailing" constant="17" id="pUe-UJ-dnE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="subtitleLabel" destination="Cup-RJ-drY" id="lpz-NQ-mAn"/>
+                                            <outlet property="titleLabel" destination="fTj-76-CP0" id="9t1-NT-o5a"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="" id="JNw-PZ-lCX">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="PC8-gS-vnl">
+                                        <rect key="frame" x="0.0" y="1110.5" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="PC8-gS-vnl" id="Xpg-QD-ciY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8H-f9-DT1">
+                                                    <rect key="frame" x="8" y="8" width="359" height="81.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Clicking the stars in any of the memorization views (Full Text, First Letters, Random Words, Sections) will always cycle through the available stars, no matter if coming from the "Categories" or "Stars" views. 
+</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="v8H-f9-DT1" firstAttribute="top" secondItem="Xpg-QD-ciY" secondAttribute="topMargin" id="1a6-Nu-Z11"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="v8H-f9-DT1" secondAttribute="bottom" id="N4T-xh-ycH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="v8H-f9-DT1" secondAttribute="trailing" id="UdT-VB-CYr"/>
+                                                <constraint firstItem="v8H-f9-DT1" firstAttribute="leading" secondItem="Xpg-QD-ciY" secondAttribute="leadingMargin" id="W7d-RE-z5n"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Other Apps" id="K4z-vz-2wr">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="9eR-Vp-K1Q">
-                                        <rect key="frame" x="0.0" y="984.5" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="1264.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9eR-Vp-K1Q" id="EJb-AM-alm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N07-SR-Fas">
@@ -278,10 +402,10 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="WpH-Ew-7ad">
-                                        <rect key="frame" x="0.0" y="1064.5" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="1344.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WpH-Ew-7ad" id="bxv-kh-j6N">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ED0-Jd-Ycl">
@@ -308,10 +432,10 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="jxH-zG-VFQ">
-                                        <rect key="frame" x="0.0" y="1144.5" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="1424.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jxH-zG-VFQ" id="uM1-QY-gtv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wfY-Mw-KKu">
@@ -338,10 +462,10 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KpZ-7M-xiJ">
-                                        <rect key="frame" x="0.0" y="1224.5" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="1504.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KpZ-7M-xiJ" id="ebR-v2-wKa">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JZv-5d-TN3">
@@ -377,6 +501,10 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                     </tableView>
                     <navigationItem key="navigationItem" title="Help" id="ydW-Ob-T6U"/>
                     <connections>
+                        <outlet property="fontStepper" destination="Bxm-SE-dfp" id="3nn-KN-Wce"/>
+                        <outlet property="fontTextField" destination="Glq-ai-e5T" id="BbC-sJ-vO0"/>
+                        <outlet property="fontWebView" destination="cUk-9e-OUm" id="z4R-j3-aNJ"/>
+                        <outlet property="secondStarButton" destination="ydj-ui-tAK" id="ayT-Dl-kYm"/>
                         <outlet property="starButton" destination="W2O-dE-uDf" id="sqI-aH-W6U"/>
                     </connections>
                 </tableViewController>
@@ -392,6 +520,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.72298090159999995" green="0.91797962860000004" blue="0.73182746590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="masterCell" textLabel="Dld-I9-ywI" style="IBUITableViewCellStyleDefault" id="6SL-kh-nNq">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -410,7 +539,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Ozt-Ur-UbN" kind="show" identifier="toSlaveView" id="fas-0b-hk6"/>
+                                    <segue destination="Ozt-Ur-UbN" kind="show" identifier="toSlaveView" id="hVw-9a-ymk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -420,9 +549,10 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Scripture Mastery" id="sIi-dK-fQ3">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="ugq-GN-yoT"/>
                         <barButtonItem key="leftBarButtonItem" image="info" id="Bch-5S-ABn">
                             <connections>
-                                <segue destination="1r1-bF-nXm" kind="show" id="IX8-iQ-ZCJ"/>
+                                <segue destination="1r1-bF-nXm" kind="show" identifier="toHelpView" id="ZbK-5H-XeY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -440,12 +570,13 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.72298090159999995" green="0.91797962860000004" blue="0.73182746590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="slaveCell" id="mgE-nE-qx6" customClass="SlaveTableViewCell" customModule="ScriptureMastery" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mgE-nE-qx6" id="b9V-7s-D2Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2q-ZN-J2P">
@@ -494,7 +625,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pBA-Mw-tEW" id="ZgY-sD-xOg">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNT-xb-DnY">
@@ -545,6 +676,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="pPD-Co-LDY"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Slave TVController" id="Wnd-Ad-AFG">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="oFI-Fr-c3F"/>
                         <barButtonItem key="rightBarButtonItem" title="Show Hint" id="Adg-fw-1hT">
                             <connections>
                                 <action selector="hintButtonTapped:" destination="Ozt-Ur-UbN" id="Vqq-RV-sAb"/>
@@ -561,35 +693,35 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
         <scene sceneID="3Ri-mr-3DH">
             <objects>
                 <collectionViewController id="AN2-3F-CkK" customClass="SlaveCollectionViewController" customModule="ScriptureMastery" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="UDD-eB-Fwp">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="UDD-eB-Fwp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hh3-Ys-SWg">
-                            <size key="itemSize" width="179" height="118"/>
+                            <size key="itemSize" width="181" height="118"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="c29-1H-dzI" customClass="SlaveCollectionViewCell" customModule="ScriptureMastery" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="179" height="118"/>
+                                <rect key="frame" x="0.0" y="0.0" width="181" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="179" height="118"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="181" height="118"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgD-Ip-xEF">
-                                            <rect key="frame" x="8" y="8" width="163" height="102"/>
+                                            <rect key="frame" x="8" y="8" width="165" height="102"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8y-tY-SOm">
-                                                    <rect key="frame" x="10" y="40.5" width="143" height="21"/>
+                                                    <rect key="frame" x="10" y="41" width="145" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwR-0r-QSE">
-                                                    <rect key="frame" x="8" y="61" width="147" height="11"/>
+                                                    <rect key="frame" x="8" y="61" width="149" height="11"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -618,7 +750,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                     <outlet property="customView" destination="sgD-Ip-xEF" id="6JW-tT-pCL"/>
                                     <outlet property="subtitleLabel" destination="qwR-0r-QSE" id="eOk-pK-2jk"/>
                                     <outlet property="titleLabel" destination="s8y-tY-SOm" id="HYw-oQ-enn"/>
-                                    <segue destination="ebV-A0-ACC" kind="presentation" identifier="toLargeCell" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="XOt-9s-Z09"/>
+                                    <segue destination="ebV-A0-ACC" kind="presentation" identifier="toLargeCell" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="CYT-i7-6uh"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -637,6 +769,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="1AR-Os-vVO"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Slave CVController" id="LK5-7D-KAV">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Zgw-N6-g4A"/>
                         <barButtonItem key="rightBarButtonItem" title="Show Hint" id="wpC-od-oxr">
                             <connections>
                                 <action selector="showHintButtonTapped:" destination="AN2-3F-CkK" id="ruX-GL-44c"/>
@@ -655,10 +788,12 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qZP-bw-Og6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.76470588235294112" green="0.94901960784313721" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="hHx-tN-2cI">
                         <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.98739886359999995" green="1" blue="0.92901471670000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="W9Z-7q-anr" kind="relationship" relationship="rootViewController" id="ikS-ug-sgF"/>
@@ -674,7 +809,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                 <splitViewController id="JG8-A3-5ZC" sceneMemberID="viewController">
                     <connections>
                         <segue destination="Bpl-k7-ARX" kind="relationship" relationship="masterViewController" id="GWN-cg-SUC"/>
-                        <segue destination="Ajy-DD-ssw" kind="show" id="CJE-bI-KK1"/>
+                        <segue destination="Ajy-DD-ssw" kind="relationship" relationship="detailViewController" id="tZA-hh-E00"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLU-mQ-Vrj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -694,7 +829,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9UW-oa-ou7">
-                                <rect key="frame" x="16" y="89" width="343" height="130"/>
+                                <rect key="frame" x="16" y="45" width="343" height="130"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="JOI-7E-107">
                                         <rect key="frame" x="90.5" y="0.0" width="162" height="30"/>
@@ -748,20 +883,29 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                             <constraint firstItem="5eW-w5-KMU" firstAttribute="height" secondItem="1Fd-Kp-poU" secondAttribute="height" id="Oah-rx-Upf"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="9LV-Dg-o9V">
-                                        <rect key="frame" x="114.5" y="100" width="114" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="9LV-Dg-o9V">
+                                        <rect key="frame" x="64" y="100" width="215" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9Y-N2-VxQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
-                                                <state key="normal" title="Stop"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="70" id="12r-8z-6Fr"/>
+                                                </constraints>
+                                                <state key="normal" title="Stop">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="removeButtonTapped:" destination="9eG-vV-weU" eventType="touchUpInside" id="6SN-6x-ncV"/>
                                                     <action selector="stopButtonTapped:" destination="aO9-91-Uaj" eventType="touchUpInside" id="2fl-Fd-bQb"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ra-NK-C9I">
-                                                <rect key="frame" x="82" y="0.0" width="32" height="30"/>
-                                                <state key="normal" title="Play"/>
+                                                <rect key="frame" x="145" y="0.0" width="70" height="30"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Play">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="playButtonTapped:" destination="aO9-91-Uaj" eventType="touchUpInside" id="haC-uR-28A"/>
                                                     <action selector="resetButtonTapped:" destination="9eG-vV-weU" eventType="touchUpInside" id="c2Q-Io-isU"/>
@@ -776,11 +920,15 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                 </constraints>
                             </stackView>
                             <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljh-Ud-9gs">
-                                <rect key="frame" x="16" y="249" width="343" height="359"/>
+                                <rect key="frame" x="16" y="205" width="343" height="403"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="aO9-91-Uaj" id="IAS-RL-9C5"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.45525354810000002" green="0.67414183940000005" blue="0.47609827020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ljh-Ud-9gs" firstAttribute="leading" secondItem="nRs-7W-1FN" secondAttribute="leadingMargin" id="5ta-UK-J35"/>
                             <constraint firstItem="9UW-oa-ou7" firstAttribute="leading" secondItem="nRs-7W-1FN" secondAttribute="leadingMargin" id="D3d-ar-Sg6"/>
@@ -792,10 +940,14 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Full Text" image="Full Text Dull" selectedImage="FullText" id="dlt-Ua-7wz"/>
-                    <navigationItem key="navigationItem" id="gCF-4S-5UY"/>
+                    <navigationItem key="navigationItem" id="gCF-4S-5UY">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="u5e-oP-GY8"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="playButton" destination="8Ra-NK-C9I" id="CPJ-TL-iXw"/>
                         <outlet property="speechSlider" destination="1Fd-Kp-poU" id="Da6-nq-2x4"/>
                         <outlet property="speechTextField" destination="3iP-kv-JQM" id="qvM-m3-vvx"/>
+                        <outlet property="stopButton" destination="b9Y-N2-VxQ" id="Dye-iy-MjS"/>
                         <outlet property="wordWebView" destination="ljh-Ud-9gs" id="g3K-yh-njd"/>
                     </connections>
                 </viewController>
@@ -816,7 +968,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XMJ-xP-E6z">
-                                <rect key="frame" x="0.0" y="89" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="45" width="375" height="130"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="pmn-eH-eCf">
                                         <rect key="frame" x="85.5" y="0.0" width="204.5" height="30"/>
@@ -850,6 +1002,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                             </view>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KyW-Iu-Fws">
                                                 <rect key="frame" x="33" y="0.0" width="309" height="51"/>
+                                                <color key="tintColor" red="0.45525354810000002" green="0.67414183940000005" blue="0.47609827020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="U0m-go-NsF"/>
                                                 </constraints>
@@ -870,19 +1023,28 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                             <constraint firstItem="l0t-yn-3tn" firstAttribute="height" secondItem="KyW-Iu-Fws" secondAttribute="height" id="qls-3v-YpZ"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="lmt-9w-LAn">
-                                        <rect key="frame" x="107.5" y="100" width="160" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="lmt-9w-LAn">
+                                        <rect key="frame" x="65" y="100" width="245" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reD-P0-tXB">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
-                                                <state key="normal" title="Reset"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="85" height="30"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Reset">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="resetButtonTapped:" destination="X4Q-U3-ell" eventType="touchUpInside" id="6wO-Sr-GBz"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1NT-m0-9EI">
-                                                <rect key="frame" x="105" y="0.0" width="55" height="30"/>
-                                                <state key="normal" title="Remove"/>
+                                                <rect key="frame" x="160" y="0.0" width="85" height="30"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="85" id="aZ9-Qb-y7d"/>
+                                                </constraints>
+                                                <state key="normal" title="Remove">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="removeButtonTapped:" destination="X4Q-U3-ell" eventType="touchUpInside" id="1cZ-po-Hgy"/>
                                                 </connections>
@@ -896,8 +1058,11 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                 </constraints>
                             </stackView>
                             <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmT-MN-zBK">
-                                <rect key="frame" x="16" y="249" width="343" height="359"/>
+                                <rect key="frame" x="16" y="205" width="343" height="403"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="X4Q-U3-ell" id="RgB-sc-uX0"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -912,10 +1077,14 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="First Letters" image="First Letter Dull" selectedImage="First Letter" id="9WF-ef-w5K"/>
-                    <navigationItem key="navigationItem" id="sn1-ZM-VKn"/>
+                    <navigationItem key="navigationItem" id="sn1-ZM-VKn">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="hLy-SM-O1s"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="letterSlider" destination="KyW-Iu-Fws" id="eJz-2r-iFC"/>
                         <outlet property="letterTextField" destination="hOG-qH-Gtg" id="bAC-Tn-Gvn"/>
+                        <outlet property="removeButton" destination="1NT-m0-9EI" id="lMg-fG-f1a"/>
+                        <outlet property="resetButton" destination="reD-P0-tXB" id="nEd-nl-ZHb"/>
                         <outlet property="wordWebView" destination="rmT-MN-zBK" id="U03-iH-CMy"/>
                     </connections>
                 </viewController>
@@ -923,7 +1092,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
             </objects>
             <point key="canvasLocation" x="1312.8" y="1434.3328335832084"/>
         </scene>
-        <!--Sections-->
+        <!--Title-->
         <scene sceneID="GUn-5B-Za1">
             <objects>
                 <viewController id="Y34-Kp-f2k" customClass="SectionViewController" customModule="ScriptureMastery" customModuleProvider="target" sceneMemberID="viewController">
@@ -935,45 +1104,54 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="rCU-wR-irh">
-                                <rect key="frame" x="16" y="89" width="343" height="109.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="rCU-wR-irh">
+                                <rect key="frame" x="16" y="45" width="343" height="109.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Displaying Sections 3 of 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKd-wm-gz0">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                        <rect key="frame" x="72" y="0.0" width="199.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="oYI-Pf-t8t">
-                                        <rect key="frame" x="0.0" y="34.5" width="343" height="31"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="oYI-Pf-t8t">
+                                        <rect key="frame" x="18.5" y="34.5" width="306.5" height="31"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rZ3-Wd-xYQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="59.5" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="firstLetterToggled:" destination="Y34-Kp-f2k" eventType="valueChanged" id="1RU-vz-hyA"/>
                                                 </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Only Display First Letters of Previous Sections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKw-UL-ai7">
-                                                <rect key="frame" x="57.5" y="0.0" width="285.5" height="31"/>
+                                                <rect key="frame" x="64" y="0.0" width="242.5" height="31"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8EA-OA-1hL">
-                                        <rect key="frame" x="0.0" y="79.5" width="343" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="8EA-OA-1hL">
+                                        <rect key="frame" x="16.5" y="79.5" width="310" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppz-US-Gyf">
-                                                <rect key="frame" x="0.0" y="0.0" width="161.5" height="30"/>
-                                                <state key="normal" title="Remove Section"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="130" id="nVs-28-8oM"/>
+                                                </constraints>
+                                                <state key="normal" title="Remove Section">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="removeSectionButtonTapped:" destination="Y34-Kp-f2k" eventType="touchUpInside" id="Yuy-6a-wRD"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AGq-22-SEX">
-                                                <rect key="frame" x="181.5" y="0.0" width="161.5" height="30"/>
-                                                <state key="normal" title="Add Section"/>
+                                                <rect key="frame" x="180" y="0.0" width="130" height="30"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Add Section">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="addSectionButtonTapped:" destination="Y34-Kp-f2k" eventType="touchUpInside" id="Zhw-vk-DhZ"/>
                                                 </connections>
@@ -983,8 +1161,11 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                 </subviews>
                             </stackView>
                             <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Men-kb-dcm">
-                                <rect key="frame" x="16" y="228" width="343" height="380"/>
+                                <rect key="frame" x="16" y="184" width="343" height="424"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y34-Kp-f2k" id="Wjz-2E-WZr"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -999,8 +1180,13 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sections" image="Sections Dull" selectedImage="Sections" id="awR-Bv-Y5q"/>
+                    <navigationItem key="navigationItem" title="Title" id="Q0W-iv-sK5">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="4V3-YL-g8B"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="AGq-22-SEX" id="IAX-66-ksY"/>
                         <outlet property="displayingLabel" destination="QKd-wm-gz0" id="elC-oJ-xzM"/>
+                        <outlet property="removeButton" destination="Ppz-US-Gyf" id="ree-xT-H2P"/>
                         <outlet property="sectionWebView" destination="Men-kb-dcm" id="Lfd-Rc-bFi"/>
                     </connections>
                 </viewController>
@@ -1021,7 +1207,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eYS-bf-czN">
-                                <rect key="frame" x="0.0" y="89" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="45" width="375" height="130"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gCD-Ly-UUl">
                                         <rect key="frame" x="87.5" y="0.0" width="200.5" height="30"/>
@@ -1055,6 +1241,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                             </view>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Kgo-Wb-ybS">
                                                 <rect key="frame" x="33" y="0.0" width="309" height="51"/>
+                                                <color key="tintColor" red="0.45525354810000002" green="0.67414183940000005" blue="0.47609827020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="ztf-Gv-uHh"/>
                                                 </constraints>
@@ -1075,19 +1262,28 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                             <constraint firstItem="sYx-NH-tXt" firstAttribute="height" secondItem="Kgo-Wb-ybS" secondAttribute="height" id="kfq-dB-0gm"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="VZK-sl-I5Z">
-                                        <rect key="frame" x="107.5" y="100" width="160" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="VZK-sl-I5Z">
+                                        <rect key="frame" x="65" y="100" width="245" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPB-QW-0CC">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
-                                                <state key="normal" title="Reset"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="85" height="30"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Reset">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="resetButtonTapped:" destination="9eG-vV-weU" eventType="touchUpInside" id="Aqh-P8-tJj"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkX-Vm-cxs">
-                                                <rect key="frame" x="105" y="0.0" width="55" height="30"/>
-                                                <state key="normal" title="Remove"/>
+                                                <rect key="frame" x="160" y="0.0" width="85" height="30"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="85" id="NEP-mk-eCK"/>
+                                                </constraints>
+                                                <state key="normal" title="Remove">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="removeButtonTapped:" destination="9eG-vV-weU" eventType="touchUpInside" id="aMS-De-23E"/>
                                                 </connections>
@@ -1101,8 +1297,11 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                                 </constraints>
                             </stackView>
                             <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fH9-GQ-MUV">
-                                <rect key="frame" x="16" y="249" width="343" height="359"/>
+                                <rect key="frame" x="16" y="205" width="343" height="403"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9eG-vV-weU" id="Mzz-jv-uvs"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1117,8 +1316,12 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Random Words" image="Random Words Dull" selectedImage="Random Words" id="F0L-Ce-SID"/>
-                    <navigationItem key="navigationItem" id="MWu-8T-quU"/>
+                    <navigationItem key="navigationItem" id="MWu-8T-quU">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="XoU-aH-H8g"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="removeButton" destination="nkX-Vm-cxs" id="s23-h8-yTX"/>
+                        <outlet property="resetButton" destination="MPB-QW-0CC" id="osO-y6-zaB"/>
                         <outlet property="wordSlider" destination="Kgo-Wb-ybS" id="Gjl-dD-x9M"/>
                         <outlet property="wordTextField" destination="joA-fF-xSo" id="3lZ-Lw-uxa"/>
                         <outlet property="wordWebView" destination="fH9-GQ-MUV" id="dLh-1Q-f8L"/>
@@ -1137,6 +1340,7 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.98739886362909468" green="1" blue="0.92901471672291192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="aO9-91-Uaj" kind="relationship" relationship="viewControllers" id="BiM-be-5dN"/>
@@ -1164,9 +1368,9 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zn-P2-vPR">
                                 <rect key="frame" x="12" y="105" width="351" height="299"/>
                                 <subviews>
-                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMZ-6l-qyI">
+                                    <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMZ-6l-qyI">
                                         <rect key="frame" x="18" y="34" width="305" height="241"/>
-                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </webView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdw-1E-bnb">
                                         <rect key="frame" x="18" y="20" width="325" height="0.0"/>
@@ -1232,6 +1436,6 @@ Clicking the stars in any of the memorization views (Full Text, First Letters, R
         <image name="info" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="A9q-nH-eUG"/>
+        <segue reference="tZA-hh-E00"/>
     </inferredMetricsTieBreakers>
 </document>

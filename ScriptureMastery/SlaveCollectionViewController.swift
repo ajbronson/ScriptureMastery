@@ -15,7 +15,6 @@ class SlaveCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.hidesBackButton = true;
     }
     
     func updateWith(books: [Book], title: String?) {
@@ -31,7 +30,8 @@ class SlaveCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? SlaveCollectionViewCell,
             let books = books else { return UICollectionViewCell() }
         cell.updateWith(book: books[indexPath.row], showHints: showHints)
-        cell.layer.shadowColor = UIColor.black.cgColor
+        //cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowColor = UIColor(colorLiteralRed: 86.0/255.0, green: 128.0/255.0, blue: 91.0/255.0, alpha: 1.0).cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 1)
         cell.layer.shadowRadius = 8
         cell.layer.shadowOpacity = 0.8

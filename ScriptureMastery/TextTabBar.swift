@@ -14,6 +14,10 @@ class TextTabBar: UITabBarController {
     var originalStar: Star.Color?
     var starMode = false
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     func updateWith(book: Book, view: SlaveTableViewController, originalStar: Star.Color?, isInStarMode: Bool) {
         self.book = book
         setImageBarButton()
