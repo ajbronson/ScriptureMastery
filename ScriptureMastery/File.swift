@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Star {
     enum Color: String {
         case Green = "has_green_star"

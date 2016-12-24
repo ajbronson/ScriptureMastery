@@ -8,6 +8,8 @@
 
 import Foundation
 
+//MARK: - Extensions
+
 extension String {
     func getStringArray() -> [String] {
         return self.components(separatedBy: " ")
@@ -44,10 +46,13 @@ extension String {
         
         for i in 0..<stringArray.count {
             var currentString = stringArray[i]
+            
             if i != stringArray.count - 1 {
                 let nextString = stringArray[i + 1]
+                
                 if let last = currentString.characters.last,
                     let first = nextString.characters.first {
+    
                     if last != " " && first != " " {
                         stringArray[i] += " "
                     }

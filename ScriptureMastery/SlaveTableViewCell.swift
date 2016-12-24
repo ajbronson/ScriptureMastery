@@ -10,13 +10,19 @@ import UIKit
 
 class SlaveTableViewCell: UITableViewCell {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var starButton: UIButton!
     
+    //MARK: - Properties
+    
     var delegate: ChangeStar?
     var book: Book?
     var isInStarMode = false
+    
+    //MARK: - Helper Methods
     
     func updateWith(book: Book, isInStarMode: Bool) {
         titleLabel.text = book.reference
@@ -34,6 +40,8 @@ class SlaveTableViewCell: UITableViewCell {
             starButton.setImage(UIImage(named: "WhiteStar"), for: .normal)
         }
     }
+    
+    //MARK: - Actions
     
     @IBAction func starButtonTapped(_ sender: UIButton) {
         if let book = book {
@@ -60,6 +68,7 @@ class SlaveTableViewCell: UITableViewCell {
                 }
             }
         }
+        
         delegate?.shouldChangeStar(sender: self, starMode: isInStarMode)
     }
 }

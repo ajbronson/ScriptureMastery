@@ -10,25 +10,36 @@ import UIKit
 
 class LargeSlaveCollectionViewCell: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var largeWebView: UIWebView!
     @IBOutlet weak var largeView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    
+    //MARK: - Properties
+    
     var book: Book?
+    
+    //MARK: - View controller lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         largeView.layer.cornerRadius = 5
+        self.view.backgroundColor = UIColor(colorLiteralRed: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 0.7)
+        
         if let book = book {
             largeWebView.loadHTMLString(book.text, baseURL: nil)
             titleLabel.text = book.reference
         }
-        
-        self.view.backgroundColor = UIColor(colorLiteralRed: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 0.7)  
     }
+    
+    //MARK: - Helper Methods
     
     func updateWith(book: Book) {
         self.book = book
     }
+    
+    //MARK: - Actions
     
     @IBAction func userTappedScreen(_ sender: UITapGestureRecognizer) {
         dismiss(animated: true, completion: nil)

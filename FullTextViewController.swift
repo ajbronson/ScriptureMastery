@@ -11,17 +11,22 @@ import AVFoundation
 
 class FullTextViewController: UIViewController, UIWebViewDelegate {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var wordWebView: UIWebView!
     @IBOutlet weak var speechSlider: UISlider!
     @IBOutlet weak var speechTextField: UITextField!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     
+    //MARK: - Properties
+    
     let synthesizer = AVSpeechSynthesizer()
     var rate: Double = 0.5
     var utterance: AVSpeechUtterance?
-    
     var book: Book?
+    
+    //MARK: - View controller lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,7 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         playButton.layer.cornerRadius = 5
         stopButton.layer.cornerRadius = 5
+        
         if let parentVC = parent as? TextTabBar,
             let book = parentVC.book {
             self.book = book
@@ -42,19 +48,25 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
         updateTextField(value: 1.0)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        synthesizer.stopSpeaking(at: .immediate)
+    }
+    
+    //MARK: - Webview Delegate Methods
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
         wordWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
     
+    //MARK: - Helper Methods
+    
     func updateTextField(value: Double) {
         speechTextField.text = "\(value)"
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        synthesizer.stopSpeaking(at: .immediate)
-    }
+    //MARK: - Actions
     
     @IBAction func speechSliderValueChanged(_ sender: UISlider) {
         if speechSlider.value > 1.0 && speechSlider.value < 1.6 {
@@ -73,12 +85,13 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
             speechSlider.setValue(0.1, animated: true)
             updateTextField(value: 0.1)
         }
+        
         synthesizer.stopSpeaking(at: .immediate)
     }
     
-    
     @IBAction func playButtonTapped(_ sender: UIButton) {
         utterance = AVSpeechUtterance(string: book?.text ?? "")
+        
         if let utterance = utterance {
             if speechSlider.value == 0.1 {
                 utterance.rate = 0.3
@@ -99,5 +112,4 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
     @IBAction func stopButtonTapped(_ sender: UIButton) {
         synthesizer.stopSpeaking(at: .immediate)
     }
-    
 }

@@ -10,10 +10,17 @@ import UIKit
 
 class SlaveCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var customView: UIView!
+    
+    //MARK: - Properties
+    
     var faceUp = true
+    
+    //MARK: - Helper Methods
     
     func updateWith(book: Book, showHints: Bool) {
         if faceUp {

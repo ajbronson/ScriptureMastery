@@ -10,18 +10,26 @@ import UIKit
 
 class SlaveTableViewController: UITableViewController, ChangeStar {
     
+    //MARK: - Properties
+    
     var showHints = false
     var books: [Book]?
     var isInStarMode = false
     var starColor: Star.Color?
     
+    //MARK: - View controller lifecycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.toolbar.isHidden = false
+        
         if books?.count == 0 {
             _ = navigationController?.popViewController(animated: true)
         }
     }
+    
+    //MARK: - Tableview data source methods
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return books?.count ?? 0
     }
@@ -42,9 +50,42 @@ class SlaveTableViewController: UITableViewController, ChangeStar {
                 return cell
             }
         }
+        
         return UITableViewCell()
     }
+    
+    //MARK: - Helper Methods
 
+    func reloadTableView(book: Book, shouldRemove: Bool) {
+        if let index = books?.index(of:book),
+            shouldRemove {
+            self.books?.remove(at: index)
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func shouldChangeStar(sender: UITableViewCell, starMode: Bool) {
+        if let indexPath = tableView.indexPath(for: sender) {
+            if starMode {
+                books?.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+                if books?.count == 0 {
+                    DispatchQueue.global().async {
+                        sleep(1)
+                        DispatchQueue.main.async {
+                            _ = self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                }
+                
+            } else {
+                tableView.reloadRows(at: [indexPath], with: .right)
+            }
+        }
+    }
+    
     func updateSlave(volume: Volume) {
         self.title = volume.name
         self.books = ScriptureController.shared.book(volumeID: volume.id)
@@ -58,32 +99,7 @@ class SlaveTableViewController: UITableViewController, ChangeStar {
         self.starColor = starColor
     }
     
-    func shouldChangeStar(sender: UITableViewCell, starMode: Bool) {
-        if let indexPath = tableView.indexPath(for: sender) {
-            if starMode {
-                books?.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                if books?.count == 0 {
-                    DispatchQueue.global().async {
-                        sleep(1)
-                        DispatchQueue.main.async {
-                             _ = self.navigationController?.popViewController(animated: true)
-                        }
-                    }
-                }
-            } else {
-                tableView.reloadRows(at: [indexPath], with: .right)
-            }
-        }
-    }
-    
-    func reloadTableView(book: Book, shouldRemove: Bool) {
-        if let index = books?.index(of:book),
-            shouldRemove {
-            self.books?.remove(at: index)
-        }
-        tableView.reloadData()
-    }
+    //MARK: - Prepare for segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toTabBar" {
@@ -100,12 +116,16 @@ class SlaveTableViewController: UITableViewController, ChangeStar {
         }
     }
     
+    //MARK: - Actions
+    
     @IBAction func hintButtonTapped(_ sender: UIBarButtonItem) {
         sender.title = showHints ? "Show Hints" : "Hide Hints"
         showHints = !showHints
         tableView.reloadData()
     }
 }
+
+//MARK: - Protocol
 
 protocol ChangeStar {
     func shouldChangeStar(sender: UITableViewCell, starMode: Bool)

@@ -10,16 +10,21 @@ import UIKit
 
 class FirstLetterViewController: UIViewController, UIWebViewDelegate {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var wordWebView: UIWebView!
     @IBOutlet weak var letterTextField: UITextField!
     @IBOutlet weak var letterSlider: UISlider!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var removeButton: UIButton!
     
+    //MARK: - Properties
     
     var firstLetterText: String = ""
     var currentText: [String] = ["", ""]
     var indexesRemoved:[Int] = []
+    
+    //MARK: - View controller lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,7 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
         letterTextField.text = "5"
         removeButton.layer.cornerRadius = 5
         resetButton.layer.cornerRadius = 5
+        
         if let parentVC = parent as? TextTabBar,
             let book = parentVC.book {
             self.tabBarController?.title = book.reference
@@ -38,10 +44,14 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    //MARK: - Webview Delegate Methods
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
         wordWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
+    
+    //MARK: - Helper Methods
     
     func reloadHTML() {
         wordWebView.loadHTMLString(currentText.joined(separator: " "), baseURL: nil)
@@ -49,6 +59,7 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
     
     func removeElements() {
         let count = Int(letterSlider.value)
+        
         for _ in 0..<count {
             
             if currentText.count == indexesRemoved.count {
@@ -65,6 +76,8 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
             indexesRemoved.append(random)
         }
     }
+    
+    //MARK: - Actions
     
     @IBAction func letterSliderDidChange(_ sender: UISlider) {
         let value: Int = Int(letterSlider.value)

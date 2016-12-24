@@ -10,16 +10,21 @@ import UIKit
 
 class RandomWordViewController: UIViewController, UIWebViewDelegate {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var wordTextField: UITextField!
     @IBOutlet weak var wordSlider: UISlider!
     @IBOutlet weak var wordWebView: UIWebView!
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     
+    //MARK: - Properties
     
     var bookText: String = ""
     var currentText: [String] = ["", ""]
     var indexesRemoved:[Int] = []
+    
+    //MARK: - View controller lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +46,14 @@ class RandomWordViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    //MARK: - Webview Delegate Methods
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
         wordWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
+    
+    //MARK: - Helper Methods
     
     func reloadHTML() {
         wordWebView.loadHTMLString(currentText.joined(separator: " "), baseURL: nil)
@@ -52,6 +61,7 @@ class RandomWordViewController: UIViewController, UIWebViewDelegate {
     
     func removeElements() {
         let count = Int(wordSlider.value)
+        
         for _ in 0..<count {
             
             if currentText.count == indexesRemoved.count {
@@ -68,6 +78,8 @@ class RandomWordViewController: UIViewController, UIWebViewDelegate {
             indexesRemoved.append(random)
         }
     }
+    
+    //MARK: - Actions
     
     @IBAction func sliderDidChange(_ sender: UISlider) {
         let value: Int = Int(wordSlider.value)

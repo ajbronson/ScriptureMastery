@@ -10,17 +10,18 @@ import UIKit
 
 class SlaveCollectionViewController: UICollectionViewController {
     
+    //MARK: - Properties
+    
     var books: [Book]?
     var showHints = false
+    
+    //MARK: - View controller Lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    func updateWith(books: [Book], title: String?) {
-        self.books = books
-        self.title = title
-    }
+    //MARK: - CollectionView Methods
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return books?.count ?? 0
@@ -30,7 +31,6 @@ class SlaveCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? SlaveCollectionViewCell,
             let books = books else { return UICollectionViewCell() }
         cell.updateWith(book: books[indexPath.row], showHints: showHints)
-        //cell.layer.shadowColor = UIColor.black.cgColor
         cell.layer.shadowColor = UIColor(colorLiteralRed: 86.0/255.0, green: 128.0/255.0, blue: 91.0/255.0, alpha: 1.0).cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 1)
         cell.layer.shadowRadius = 8
@@ -45,15 +45,27 @@ class SlaveCollectionViewController: UICollectionViewController {
         }
     }
     
+    //MARK: - Helper Methods
+    
+    func updateWith(books: [Book], title: String?) {
+        self.books = books
+        self.title = title
+    }
+    
+    //MARK: - Actions
+    
     @IBAction func showHintButtonTapped(_ sender: UIBarButtonItem) {
         sender.title = showHints ? "Show Hints" : "Hide Hints"
         showHints = !showHints
         collectionView?.reloadData()
         
     }
+    
     @IBAction func toListModeButtonTapped(_ sender: UIBarButtonItem) {
         _ = navigationController?.popViewController(animated: true)
     }
+    
+    //MARK: - Prepare for segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toLargeCell" {

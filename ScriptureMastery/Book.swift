@@ -9,8 +9,6 @@
 import Foundation
 import GRDB
 
-typealias JSONObject = [String : Any?]
-
 class Book: Equatable {
     let id: Int
     let reference: String
@@ -34,6 +32,8 @@ class Book: Equatable {
         memorized = row.value(named: "memorized")
     }
 }
+
+//MARK: - Equatable 
 
 func ==(rhs: Book, lhs: Book) -> Bool {
     return rhs.id == lhs.id

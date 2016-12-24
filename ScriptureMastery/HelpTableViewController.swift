@@ -41,6 +41,8 @@ class HelpTableViewController: UITableViewController, UIWebViewDelegate {
         fontWebView.loadHTMLString("Example Font Size", baseURL: nil)
     }
     
+    //MARK: - Webview Delegate Methods
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
         fontWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")

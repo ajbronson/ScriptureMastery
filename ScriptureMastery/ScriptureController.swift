@@ -27,19 +27,17 @@ class ScriptureController {
     
     var dbQueue: DatabaseQueue!
     
+    //MARK: - Init
     
     fileprivate init() {
         let fileManager = FileManager.default
+        
         if let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
             dbQueue = try? DatabaseQueue(path: "\(documentDirectory.absoluteString)\(ScriptureController.Constant.fileName).\(ScriptureController.Constant.fileExtension)")
         }
     }
     
-    let masterList = ["All Scripture Masteries", "Old Testament", "New Testament", "Book of Mormon", "Doctrine & Covenants", "Retired Scripture Masteries"]
-    
-    func getAllCanons() {
-        
-    }
+    //MARK: - Queries
     
     func volumes() -> [Volume] {
         return try! dbQueue.inDatabase({ (db: Database) -> [Volume] in
@@ -48,6 +46,7 @@ class ScriptureController {
             for row in try Row.fetchAll(db, "select * from canon where retired = 0") {
                 volumes.append(Volume(row: row))
             }
+            
             return volumes
         })
     }
@@ -69,6 +68,7 @@ class ScriptureController {
                     books.append(Book(row: row))
                 }
             }
+            
             return books
         })
     }
@@ -80,6 +80,7 @@ class ScriptureController {
             for row in try Row.fetchAll(db, "select * from scriptures where has_green_star = 1") {
                 books.append(Book(row: row))
             }
+            
             return books
         })
     }
@@ -91,6 +92,7 @@ class ScriptureController {
             for row in try Row.fetchAll(db, "select * from scriptures where has_yellow_star = 1") {
                 books.append(Book(row: row))
             }
+            
             return books
         })
     }
@@ -102,12 +104,9 @@ class ScriptureController {
             for row in try Row.fetchAll(db, "select * from scriptures where has_blue_star = 1") {
                 books.append(Book(row: row))
             }
+            
             return books
         })
-    }
-    
-    func updateBookStar() {
-        
     }
     
     func updateBookStar(book: Book, hasYellowStar: Int, hasBlueStar: Int, hasGreenStar: Int) {

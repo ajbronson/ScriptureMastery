@@ -10,10 +10,14 @@ import UIKit
 
 class MasterTableViewController: UITableViewController {
     
+    //MARK: - Properties
+    
     var volumes: [Volume]?
     var greenStars: [Book]?
     var yellowStars: [Book]?
     var blueStars: [Book]?
+    
+    //MARK: - View controller lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +34,15 @@ class MasterTableViewController: UITableViewController {
         navigationController?.toolbar.isHidden = true
     }
     
+    //MARK: - Tableview Data source Methods
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         if let green = greenStars,
             let blue = blueStars,
             let yellow = yellowStars, green.count > 0 || blue.count > 0 || yellow.count > 0 {
             return 2
         }
+        
         return 1
     }
     
@@ -95,11 +102,14 @@ class MasterTableViewController: UITableViewController {
         }
     }
     
+    //MARK: - Prepare for Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSlaveView" {
             if let index = tableView.indexPathForSelectedRow,
                 let volumes = volumes,
                 let destinationVC = segue.destination as? SlaveTableViewController {
+                
                 if index.section == 0 {
                    destinationVC.updateSlave(volume: volumes[index.row])
                 } else if index.section == 1 {
@@ -112,8 +122,11 @@ class MasterTableViewController: UITableViewController {
         }
     }
     
+    //MARK: - Helper Methods
+    
     func getStar(row: Int) -> (String, [Book]?, Star.Color) {
         var rows: [Int] = []
+        
         if let green = greenStars,
             green.count > 0 {
             rows.append(0)
@@ -148,8 +161,7 @@ class MasterTableViewController: UITableViewController {
         } else if row == 2 {
             return ("Yellow Stars", yellowStars, Star.Color.Yellow)
         }
+        
         return ("", nil, Star.Color.White)
     }
-    
-    
 }

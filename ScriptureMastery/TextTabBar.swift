@@ -9,10 +9,15 @@
 import UIKit
 
 class TextTabBar: UITabBarController {
+    
+    //MARK: - Properties
+    
     var book: Book?
     var slaveTableViewController: SlaveTableViewController?
     var originalStar: Star.Color?
     var starMode = false
+    
+    //MARK: - View controller lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,34 +25,25 @@ class TextTabBar: UITabBarController {
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
     }
     
-    func updateWith(book: Book, view: SlaveTableViewController, originalStar: Star.Color?, isInStarMode: Bool) {
-        self.book = book
-        setImageBarButton()
-        self.slaveTableViewController = view
-        self.originalStar = originalStar
-        self.starMode = isInStarMode
-    }
-    
-    func starUpdated() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         if let book = book {
-            if let green = book.greenStar, green {
-                ScriptureController.shared.updateBookStar(book: book, hasYellowStar: 0, hasBlueStar: 1, hasGreenStar: 0)
-                book.blueStar = true
-                book.greenStar = false
-            } else if let blue = book.blueStar, blue {
-                ScriptureController.shared.updateBookStar(book: book, hasYellowStar: 1, hasBlueStar: 0, hasGreenStar: 0)
-                book.yellowStar = true
-                book.blueStar = false
+            var currenStar: Star.Color = Star.Color.White
+            
+            if let blue = book.blueStar, blue {
+                currenStar = Star.Color.Blue
             } else if let yellow = book.yellowStar, yellow {
-                ScriptureController.shared.updateBookStar(book: book, hasYellowStar: 0, hasBlueStar: 0, hasGreenStar: 0)
-                book.yellowStar = false
-            } else {
-                ScriptureController.shared.updateBookStar(book: book, hasYellowStar: 0, hasBlueStar: 0, hasGreenStar: 1)
-                book.greenStar = true
+                currenStar = Star.Color.Yellow
+            } else if let green = book.greenStar, green {
+                currenStar = Star.Color.Green
             }
-            setImageBarButton()
+            
+            slaveTableViewController?.reloadTableView(book: book, shouldRemove: starMode == true ? originalStar?.rawValue != currenStar.rawValue : false)
         }
     }
+    
+    //MARK: - Helper Methodw
     
     private func setImageBarButton() {
         if let book = book {
@@ -67,18 +63,33 @@ class TextTabBar: UITabBarController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    func starUpdated() {
         if let book = book {
-            var currenStar: Star.Color = Star.Color.White
-            if let blue = book.blueStar, blue {
-                currenStar = Star.Color.Blue
+            if let green = book.greenStar, green {
+                ScriptureController.shared.updateBookStar(book: book, hasYellowStar: 0, hasBlueStar: 1, hasGreenStar: 0)
+                book.blueStar = true
+                book.greenStar = false
+            } else if let blue = book.blueStar, blue {
+                ScriptureController.shared.updateBookStar(book: book, hasYellowStar: 1, hasBlueStar: 0, hasGreenStar: 0)
+                book.yellowStar = true
+                book.blueStar = false
             } else if let yellow = book.yellowStar, yellow {
-                currenStar = Star.Color.Yellow
-            } else if let green = book.greenStar, green {
-                currenStar = Star.Color.Green
+                ScriptureController.shared.updateBookStar(book: book, hasYellowStar: 0, hasBlueStar: 0, hasGreenStar: 0)
+                book.yellowStar = false
+            } else {
+                ScriptureController.shared.updateBookStar(book: book, hasYellowStar: 0, hasBlueStar: 0, hasGreenStar: 1)
+                book.greenStar = true
             }
-            slaveTableViewController?.reloadTableView(book: book, shouldRemove: starMode == true ? originalStar?.rawValue != currenStar.rawValue : false)
+            
+            setImageBarButton()
         }
+    }
+    
+    func updateWith(book: Book, view: SlaveTableViewController, originalStar: Star.Color?, isInStarMode: Bool) {
+        self.book = book
+        setImageBarButton()
+        self.slaveTableViewController = view
+        self.originalStar = originalStar
+        self.starMode = isInStarMode
     }
 }

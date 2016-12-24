@@ -10,12 +10,15 @@ import UIKit
 
 class SectionViewController: UIViewController, UIWebViewDelegate {
     
-    //MARK: - Properties 
+    //MARK: - Outlets
     
     @IBOutlet weak var sectionWebView: UIWebView!
     @IBOutlet weak var displayingLabel: UILabel!
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
+    
+    //MARK: - Properties
+    
     var sections: [String] = []
     var displayingSections = 1
     var firstLetterOnly = false
@@ -26,6 +29,7 @@ class SectionViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         removeButton.layer.cornerRadius = 5
         addButton.layer.cornerRadius = 5
+        
         if let parentVC = parent as? TextTabBar,
             let book = parentVC.book {
             self.tabBarController?.title = book.reference
@@ -35,19 +39,7 @@ class SectionViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    //MARK: - Helper Methods
-    
-    func reloadHTML() {
-        var stringToShow = ""
-        for i in 0..<displayingSections {
-            if firstLetterOnly && i != displayingSections - 1 {
-                stringToShow += "\(sections[i].setFirstLetters()) | "
-            } else {
-                stringToShow += "\(sections[i]) | "
-            }
-        }
-        sectionWebView.loadHTMLString(stringToShow, baseURL: nil)
-    }
+    //MARK: - Webview Delegate Methods
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
@@ -58,6 +50,22 @@ class SectionViewController: UIViewController, UIWebViewDelegate {
             let script = "scrollTo(1, \(height))"
             sectionWebView.stringByEvaluatingJavaScript(from: script)
         }
+    }
+    
+    //MARK: - Helper Methods
+    
+    func reloadHTML() {
+        var stringToShow = ""
+        
+        for i in 0..<displayingSections {
+            if firstLetterOnly && i != displayingSections - 1 {
+                stringToShow += "\(sections[i].setFirstLetters()) | "
+            } else {
+                stringToShow += "\(sections[i]) | "
+            }
+        }
+        
+        sectionWebView.loadHTMLString(stringToShow, baseURL: nil)
     }
     
     func updateDisplaying() {
