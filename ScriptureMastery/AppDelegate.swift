@@ -9,16 +9,12 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        if let splitViewController = window?.rootViewController as? UISplitViewController {
-            splitViewController.delegate = self
-        }
         
         if UserDefaults.standard.value(forKey: ScriptureController.Constant.fontSize) == nil {
             UserDefaults.standard.set(100, forKey: ScriptureController.Constant.fontSize)
@@ -41,25 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         
         return true
-    }
-    
-    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
-        return true
-    }
-    
-    func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
-        if let navVC = primaryViewController as? UINavigationController {
-            for controller in navVC.viewControllers {
-                if controller.restorationIdentifier == "detailVC" {
-                    return controller
-                }
-            }
-        }
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailView = storyboard.instantiateViewController(withIdentifier: "detailVC")
-        
-        return detailView
     }
 }
 
