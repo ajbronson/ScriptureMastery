@@ -17,7 +17,7 @@ class SectionViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     var sections: [String] = []
-    var displayingSections = 0
+    var displayingSections = 1
     var firstLetterOnly = false
     
     //MARK: - View Controller Lifecycle
@@ -52,6 +52,12 @@ class SectionViewController: UIViewController, UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
         sectionWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
+        
+        if let heightResult = sectionWebView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;"),
+            let height = Int(heightResult) {
+            let script = "scrollTo(1, \(height))"
+            sectionWebView.stringByEvaluatingJavaScript(from: script)
+        }
     }
     
     func updateDisplaying() {

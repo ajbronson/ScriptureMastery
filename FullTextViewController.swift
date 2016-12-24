@@ -25,6 +25,8 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         playButton.layer.cornerRadius = 5
         stopButton.layer.cornerRadius = 5
         if let parentVC = parent as? TextTabBar,

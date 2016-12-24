@@ -16,6 +16,8 @@ class TextTabBar: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
     }
     
     func updateWith(book: Book, view: SlaveTableViewController, originalStar: Star.Color?, isInStarMode: Bool) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FB03B76676F719237E41BC5 /* Pods_ScriptureMastery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93279E93E79DB3511E050417 /* Pods_ScriptureMastery.framework */; };
 		214031BE1DFBC5FF00CA4BEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214031BD1DFBC5FF00CA4BEE /* AppDelegate.swift */; };
 		214031C31DFBC5FF00CA4BEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214031C11DFBC5FF00CA4BEE /* Main.storyboard */; };
 		214031C51DFBC5FF00CA4BEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 214031C41DFBC5FF00CA4BEE /* Assets.xcassets */; };
@@ -93,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB03B76676F719237E41BC5 /* Pods_ScriptureMastery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,9 +632,10 @@
 				INFOPLIST_FILE = ScriptureMastery/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.precisioncodes.ScriptureMastery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ldsmemory.scripturemastery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -646,9 +649,10 @@
 				INFOPLIST_FILE = ScriptureMastery/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.precisioncodes.ScriptureMastery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ldsmemory.scripturemastery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

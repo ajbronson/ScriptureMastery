@@ -16,7 +16,6 @@ class LargeSlaveCollectionViewCell: UIViewController {
     var book: Book?
     
     override func viewDidLoad() {
-        //TODO: write these supers everywhere
         super.viewDidLoad()
         largeView.layer.cornerRadius = 5
         if let book = book {
