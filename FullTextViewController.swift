@@ -51,6 +51,7 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         synthesizer.stopSpeaking(at: .immediate)
+        playButton.setTitle("Play", for: .normal)
     }
     
     //MARK: - Webview Delegate Methods
@@ -92,36 +93,34 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
     @IBAction func playButtonTapped(_ sender: UIButton) {
         if synthesizer.isPaused {
             synthesizer.continueSpeaking()
+            playButton.setTitle("Pause", for: .normal)
+        } else if synthesizer.isSpeaking {
+            synthesizer.pauseSpeaking(at: .immediate)
             playButton.setTitle("Play", for: .normal)
         } else {
+            utterance = AVSpeechUtterance(string: book?.text ?? "")
             playButton.setTitle("Pause", for: .normal)
             
-            if synthesizer.isSpeaking {
-                synthesizer.pauseSpeaking(at: .immediate)
-            } else {
-                utterance = AVSpeechUtterance(string: book?.text ?? "")
-                
-                if let utterance = utterance {
-                    if speechSlider.value == 0.1 {
-                        utterance.rate = 0.3
-                    } else if speechSlider.value == 0.5 {
-                        utterance.rate = 0.4
-                    } else if speechSlider.value == 1.0 {
-                        utterance.rate = 0.5
-                    } else if speechSlider.value == 1.5 {
-                        utterance.rate = 0.55
-                    } else {
-                        utterance.rate = 0.6
-                    }
-                    
-                    synthesizer.speak(utterance)
+            if let utterance = utterance {
+                if speechSlider.value == 0.1 {
+                    utterance.rate = 0.3
+                } else if speechSlider.value == 0.5 {
+                    utterance.rate = 0.4
+                } else if speechSlider.value == 1.0 {
+                    utterance.rate = 0.5
+                } else if speechSlider.value == 1.5 {
+                    utterance.rate = 0.55
+                } else {
+                    utterance.rate = 0.6
                 }
+                
+                synthesizer.speak(utterance)
             }
         }
     }
     
     @IBAction func stopButtonTapped(_ sender: UIButton) {
         synthesizer.stopSpeaking(at: .immediate)
-        
+        playButton.setTitle("Play", for: .normal)
     }
 }

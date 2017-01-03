@@ -39,6 +39,15 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
             let book = parentVC.book {
             self.tabBarController?.title = book.reference
             firstLetterText = book.text.setFirstLetters()
+
+            for _ in 0...3 {
+                let index = firstLetterText.index(firstLetterText.startIndex, offsetBy: 1)
+                let removeIndex = firstLetterText.index(firstLetterText.startIndex, offsetBy: 0)
+                let letter =  firstLetterText.substring(to: index)
+                if letter.isNumeric() || letter == " " {
+                    firstLetterText.remove(at: removeIndex)
+                }
+            }
             currentText = firstLetterText.getStringArray()
             reloadHTML()
         }

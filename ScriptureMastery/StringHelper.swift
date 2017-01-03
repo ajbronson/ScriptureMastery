@@ -19,8 +19,16 @@ extension String {
         var stringToReturn = ""
         
         for string in self.getStringArray() {
-            if let first = string.characters.first {
-                stringToReturn = stringToReturn + "\(String(describing: first)) "
+            if var first = string.characters.first {
+                while first == "(" || first == "\"" {
+                    let removeIndex = string.index(string.startIndex, offsetBy: 0)
+                    var modifiedString = string
+                    modifiedString.remove(at: removeIndex)
+                    if let newFirst = modifiedString.characters.first {
+                        first = newFirst
+                    }
+                }
+                stringToReturn += "\(String(describing: first)) "
             }
         }
         
@@ -28,7 +36,7 @@ extension String {
     }
     
     func getSections() -> [String] {
-        let set = CharacterSet(charactersIn: ",.:;?-\n")
+        let set = CharacterSet(charactersIn: ",.:;?-\n()\"")
         var stringArray = self.components(separatedBy: set)
         var positionsToRemove: [Int] = []
     
@@ -61,5 +69,13 @@ extension String {
         }
         
         return stringArray
+    }
+    
+    func isNumeric() -> Bool {
+        if let _ = Int(self) {
+            return true
+        } else {
+            return false
+        }
     }
 }
