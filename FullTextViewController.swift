@@ -90,26 +90,38 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
-        utterance = AVSpeechUtterance(string: book?.text ?? "")
-        
-        if let utterance = utterance {
-            if speechSlider.value == 0.1 {
-                utterance.rate = 0.3
-            } else if speechSlider.value == 0.5 {
-                utterance.rate = 0.4
-            } else if speechSlider.value == 1.0 {
-                utterance.rate = 0.5
-            } else if speechSlider.value == 1.5 {
-                utterance.rate = 0.55
-            } else {
-                utterance.rate = 0.6
-            }
+        if synthesizer.isPaused {
+            synthesizer.continueSpeaking()
+            playButton.setTitle("Play", for: .normal)
+        } else {
+            playButton.setTitle("Pause", for: .normal)
             
-            synthesizer.speak(utterance)
+            if synthesizer.isSpeaking {
+                synthesizer.pauseSpeaking(at: .immediate)
+            } else {
+                utterance = AVSpeechUtterance(string: book?.text ?? "")
+                
+                if let utterance = utterance {
+                    if speechSlider.value == 0.1 {
+                        utterance.rate = 0.3
+                    } else if speechSlider.value == 0.5 {
+                        utterance.rate = 0.4
+                    } else if speechSlider.value == 1.0 {
+                        utterance.rate = 0.5
+                    } else if speechSlider.value == 1.5 {
+                        utterance.rate = 0.55
+                    } else {
+                        utterance.rate = 0.6
+                    }
+                    
+                    synthesizer.speak(utterance)
+                }
+            }
         }
     }
     
     @IBAction func stopButtonTapped(_ sender: UIButton) {
         synthesizer.stopSpeaking(at: .immediate)
+        
     }
 }
