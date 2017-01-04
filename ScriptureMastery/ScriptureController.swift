@@ -115,4 +115,11 @@ class ScriptureController {
             try? me?.execute()
         }
     }
+    
+    func updateStarWithBookID(id: Int, hasYellowStar: Int, hasBlueStar: Int, hasGreenStar: Int) {
+        dbQueue.inDatabase { (db: Database) -> Void in
+            let me = try? db.makeUpdateStatement("UPDATE scriptures SET has_yellow_star = \(hasYellowStar), has_blue_star = \(hasBlueStar), has_green_star = \(hasGreenStar) WHERE id = \(id)")
+            try? me?.execute()
+        }
+    }
 }

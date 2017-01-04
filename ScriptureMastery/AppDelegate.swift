@@ -39,6 +39,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         }
         
+        if let memorizedArray = UserDefaults.standard.array(forKey: "memorizedArray") {
+            for i in 0..<memorizedArray.count {
+                if let item = memorizedArray[i] as? String {
+                    if item == "1" {
+                        //GOLD_STAR
+                        ScriptureController.shared.updateStarWithBookID(id: i, hasYellowStar: 1, hasBlueStar: 0, hasGreenStar: 0)
+                    } else if item == "2" {
+                        //BLUE_STAR
+                        ScriptureController.shared.updateStarWithBookID(id: i, hasYellowStar: 0, hasBlueStar: 1, hasGreenStar: 0)
+                    } else if item == "3" {
+                        //GREEN_STAR
+                        ScriptureController.shared.updateStarWithBookID(id: i, hasYellowStar: 0, hasBlueStar: 0, hasGreenStar: 1)
+                    }
+                }
+            }
+            UserDefaults.standard.removeObject(forKey: "memorizedArray")
+            UserDefaults.standard.synchronize()
+        }
+        
         return true
     }
 }
