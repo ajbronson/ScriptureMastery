@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         if UserDefaults.standard.value(forKey: ScriptureController.Constant.fontSize) == nil {
-            UserDefaults.standard.set(100, forKey: ScriptureController.Constant.fontSize)
+            UserDefaults.standard.set(120, forKey: ScriptureController.Constant.fontSize)
         }
         let fileManager = FileManager.default
         let documentsURL = try! FileManager().url(for: .documentDirectory,

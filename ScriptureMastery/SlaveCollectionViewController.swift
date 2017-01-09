@@ -8,29 +8,93 @@
 
 import UIKit
 
-class SlaveCollectionViewController: UICollectionViewController {
-    
-    //MARK: - Properties
+class SlaveCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var books: [Book]?
     var showHints = false
-    
-    //MARK: - View controller Lifecycle
+    var isInStarMode = false
+    var showHeader = false
+    var starCanonIDs:[Int] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    //MARK: - CollectionView Methods
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return books?.count ?? 0
+    func updateWith(books: [Book], title: String?, starMode: Bool, showHeader: Bool) {
+        self.books = books
+        self.title = title
+        self.isInStarMode = starMode
+        self.showHeader = showHeader
+        if isInStarMode || showHeader {
+            organizeBooks()
+        }
     }
     
+    func organizeBooks() {
+        guard let books = books else { return }
+        let sortedBooks = books.sorted{$0.canonID < $1.canonID}
+        self.books = sortedBooks
+        starCanonIDs = sortedBooks.flatMap({$0.canonID})
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isInStarMode || showHeader  {
+            var count = 0
+            let singleCanonIDs = (Array(Set(starCanonIDs)))
+            let sortedIDs = singleCanonIDs.sorted{$0 < $1}
+            
+            for item in starCanonIDs {
+                if item == sortedIDs[section] {
+                    count += 1
+                }
+            }
+            
+            return count
+        } else {
+            return books?.count ?? 0
+        }
+    }
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if isInStarMode || showHeader  {
+            return Array(Set(starCanonIDs)).count
+        } else {
+            return 1
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as? SlaveCollectionHeaderView else { return UICollectionReusableView() }
+        if isInStarMode || showHeader  {
+            let singleCanonIDs = (Array(Set(starCanonIDs)))
+            let sortedIDs = singleCanonIDs.sorted{$0 < $1}
+            headerView.updateHeader(title: ScriptureController.shared.volumeNameForID(id: sortedIDs[indexPath.section]))
+            headerView.backgroundColor = UIColor(colorLiteralRed: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            return headerView
+            
+        }
+        return headerView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if isInStarMode || showHeader  {
+            return CGSize(width: 25, height: 25)
+        } else {
+            return CGSize(width: 0, height: 0)
+        }
+    }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? SlaveCollectionViewCell,
             let books = books else { return UICollectionViewCell() }
-        cell.updateWith(book: books[indexPath.row], showHints: showHints)
+        
+        if isInStarMode || showHeader  {
+            let singleCanonIDs = (Array(Set(starCanonIDs)))
+            let sortedIDs = singleCanonIDs.sorted{$0 < $1}
+            let filteredBooks = books.filter({$0.canonID == sortedIDs[indexPath.section]})
+            cell.updateWith(book: filteredBooks[indexPath.row], showHints: showHints)
+        } else {
+            cell.updateWith(book: books[indexPath.row], showHints: showHints)
+        }
         cell.layer.shadowColor = UIColor(colorLiteralRed: 86.0/255.0, green: 128.0/255.0, blue: 91.0/255.0, alpha: 1.0).cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 1)
         cell.layer.shadowRadius = 8
@@ -43,13 +107,6 @@ class SlaveCollectionViewController: UICollectionViewController {
         if let cell = collectionView.cellForItem(at: indexPath) as? SlaveCollectionViewCell{
             UIView.transition(with: cell.customView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
         }
-    }
-    
-    //MARK: - Helper Methods
-    
-    func updateWith(books: [Book], title: String?) {
-        self.books = books
-        self.title = title
     }
     
     //MARK: - Actions
@@ -73,7 +130,14 @@ class SlaveCollectionViewController: UICollectionViewController {
                 let index = collectionView?.indexPathsForSelectedItems,
                 let indexPath = index.first,
                 let books = books {
-                destinationVC.updateWith(book: books[indexPath.row])
+                if isInStarMode || showHeader {
+                    let singleCanonIDs = (Array(Set(starCanonIDs)))
+                    let sortedIDs = singleCanonIDs.sorted{$0 < $1}
+                    let filteredBooks = books.filter({$0.canonID == sortedIDs[indexPath.section]})
+                    destinationVC.updateWith(book: filteredBooks[indexPath.row])
+                } else {
+                    destinationVC.updateWith(book: books[indexPath.row])
+                }
             }
         }
     }

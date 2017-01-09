@@ -23,8 +23,8 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
     var firstLetterText: String = ""
     var currentText: [String] = ["", ""]
     var indexesRemoved:[Int] = []
-    
-    //MARK: - View controller lifecycle
+    var book: Book?
+    var books: [Book]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,41 +34,30 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
         letterTextField.text = "5"
         removeButton.layer.cornerRadius = 5
         resetButton.layer.cornerRadius = 5
-        
         if let parentVC = parent as? TextTabBar,
-            let book = parentVC.book {
+            let book = parentVC.book,
+            let books = parentVC.books {
+            self.book = book
+            self.books = books
             self.tabBarController?.title = book.reference
             firstLetterText = book.text.setFirstLetters()
-
-            for _ in 0...3 {
-                let index = firstLetterText.index(firstLetterText.startIndex, offsetBy: 1)
-                let removeIndex = firstLetterText.index(firstLetterText.startIndex, offsetBy: 0)
-                let letter =  firstLetterText.substring(to: index)
-                if letter.isNumeric() || letter == " " {
-                    firstLetterText.remove(at: removeIndex)
-                }
-            }
-            currentText = firstLetterText.getStringArray()
+            let arrayText = firstLetterText.getStringArray()
+            currentText = ScriptureController.shared.removeEmptyElementsFromArray(array: arrayText)
             reloadHTML()
         }
     }
-    
-    //MARK: - Webview Delegate Methods
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
         wordWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
     
-    //MARK: - Helper Methods
-    
     func reloadHTML() {
-        wordWebView.loadHTMLString(currentText.joined(separator: " "), baseURL: nil)
+        let bookText = currentText.joined(separator: " ").replacingOccurrences(of: "\n", with: "<br>")
+        wordWebView.loadHTMLString(bookText, baseURL: nil)
     }
     
-    func removeElements() {
-        let count = Int(letterSlider.value)
-        
+    func removeElements(count: Int) {
         for _ in 0..<count {
             
             if currentText.count == indexesRemoved.count {
@@ -81,11 +70,24 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
                 random = Int(arc4random_uniform(UInt32(currentText.count)))
             }
             
-            currentText[random] = "__"
             indexesRemoved.append(random)
+            if currentText[random] == "<br>" {
+                removeElements(count: 1)
+            } else {
+                currentText[random] = "_"
+            }
         }
     }
     
+    func bookDidChange() {
+        if let book = book {
+            self.tabBarController?.title = book.reference
+            firstLetterText = book.text.setFirstLetters()
+            let arrayText = firstLetterText.getStringArray()
+            currentText = ScriptureController.shared.removeEmptyElementsFromArray(array: arrayText)
+            reloadHTML()
+        }
+    }
     //MARK: - Actions
     
     @IBAction func letterSliderDidChange(_ sender: UISlider) {
@@ -95,12 +97,31 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
     
     @IBAction func resetButtonTapped(_ sender: UIButton) {
         indexesRemoved = []
-        currentText = firstLetterText.getStringArray()
+        let arrayText = firstLetterText.getStringArray()
+        currentText = ScriptureController.shared.removeEmptyElementsFromArray(array: arrayText)
         reloadHTML()
     }
 
     @IBAction func removeButtonTapped(_ sender: UIButton) {
-        removeElements()
+        removeElements(count: Int(letterSlider.value))
         reloadHTML()
+    }
+    
+    @IBAction func screenSwipedRight(_ sender: UISwipeGestureRecognizer) {
+        if let parentVC = parent as? TextTabBar {
+            if parentVC.switchToBook(next: false) {
+                bookDidChange()
+                indexesRemoved = []
+            }
+        }
+    }
+    
+    @IBAction func screenSwipedLeft(_ sender: UISwipeGestureRecognizer) {
+        if let parentVC = parent as? TextTabBar {
+            if parentVC.switchToBook(next: true) {
+                bookDidChange()
+                indexesRemoved = []
+            }
+        }
     }
 }

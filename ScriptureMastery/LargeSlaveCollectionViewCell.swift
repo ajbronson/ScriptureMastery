@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LargeSlaveCollectionViewCell: UIViewController {
+class LargeSlaveCollectionViewCell: UIViewController, UIWebViewDelegate {
     
     //MARK: - Outlets
     
@@ -37,6 +37,13 @@ class LargeSlaveCollectionViewCell: UIViewController {
     
     func updateWith(book: Book) {
         self.book = book
+    }
+    
+    //MARK: - Webview Delegate Methods
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
+        largeWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
     
     //MARK: - Actions

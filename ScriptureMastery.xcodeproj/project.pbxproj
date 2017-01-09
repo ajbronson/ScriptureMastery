@@ -25,6 +25,7 @@
 		21AA852F1E05F7BA00E32F85 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AA852E1E05F7BA00E32F85 /* File.swift */; };
 		21AA85311E064C7B00E32F85 /* SlaveCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AA85301E064C7B00E32F85 /* SlaveCollectionViewController.swift */; };
 		21BA700E1E064D79002B7472 /* SlaveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BA700D1E064D79002B7472 /* SlaveCollectionViewCell.swift */; };
+		21C764811E2382E4003C1657 /* SlaveCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C764801E2382E4003C1657 /* SlaveCollectionHeaderView.swift */; };
 		21CEBDE71E04E8910097E6E5 /* SMDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 21CEBDE61E04E8910097E6E5 /* SMDB.db */; };
 		21CEBDE91E04E9A50097E6E5 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CEBDE81E04E9A50097E6E5 /* Volume.swift */; };
 		21CEBDEB1E04EBF00097E6E5 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CEBDEA1E04EBF00097E6E5 /* Book.swift */; };
@@ -76,6 +77,7 @@
 		21AA852E1E05F7BA00E32F85 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		21AA85301E064C7B00E32F85 /* SlaveCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlaveCollectionViewController.swift; sourceTree = "<group>"; };
 		21BA700D1E064D79002B7472 /* SlaveCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlaveCollectionViewCell.swift; sourceTree = "<group>"; };
+		21C764801E2382E4003C1657 /* SlaveCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlaveCollectionHeaderView.swift; sourceTree = "<group>"; };
 		21CEBDE61E04E8910097E6E5 /* SMDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = SMDB.db; sourceTree = "<group>"; };
 		21CEBDE81E04E9A50097E6E5 /* Volume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volume.swift; sourceTree = "<group>"; };
 		21CEBDEA1E04EBF00097E6E5 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				21DC0F381E05C08900C879D5 /* SlaveTableViewCell.swift */,
 				21DC0F3A1E05C37600C879D5 /* SlaveTableViewCellNoHint.swift */,
 				2163C68A1E065D0E0069E198 /* LargeSlaveCollectionViewCell.swift */,
+				21C764801E2382E4003C1657 /* SlaveCollectionHeaderView.swift */,
 			);
 			name = CustomTableViewCell;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				214031F81DFBD57C00CA4BEE /* RandomWordViewController.swift in Sources */,
 				214031EC1DFBCA0200CA4BEE /* MasterTableViewController.swift in Sources */,
 				21DC0F391E05C08900C879D5 /* SlaveTableViewCell.swift in Sources */,
+				21C764811E2382E4003C1657 /* SlaveCollectionHeaderView.swift in Sources */,
 				21F6E5D31E050731007BDA50 /* SectionViewController.swift in Sources */,
 				214031BE1DFBC5FF00CA4BEE /* AppDelegate.swift in Sources */,
 				21DC0F3B1E05C37600C879D5 /* SlaveTableViewCellNoHint.swift in Sources */,

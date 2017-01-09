@@ -37,6 +37,9 @@ class SlaveTableViewCellNoHint: UITableViewCell {
         } else {
             starButton.setImage(UIImage(named: "WhiteStar"), for: .normal)
         }
+        
+        let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
+        titleLabel.font = UIFont.systemFont(ofSize: CGFloat(textSize)/6.2)
     }
     
     //MARK: - Actions

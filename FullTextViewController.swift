@@ -24,9 +24,9 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
     let synthesizer = AVSpeechSynthesizer()
     var rate: Double = 0.5
     var utterance: AVSpeechUtterance?
-    var book: Book?
     
-    //MARK: - View controller lifecycle
+    var book: Book?
+    var books: [Book]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +34,14 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         playButton.layer.cornerRadius = 5
         stopButton.layer.cornerRadius = 5
-        
         if let parentVC = parent as? TextTabBar,
-            let book = parentVC.book {
+            let book = parentVC.book,
+            let books = parentVC.books {
             self.book = book
+            self.books = books
             self.tabBarController?.title = book.reference
-            wordWebView.loadHTMLString(book.text, baseURL: nil)
+            let bookText = book.text.replacingOccurrences(of: "\n", with: "<br>")
+            wordWebView.loadHTMLString(bookText, baseURL: nil)
         }
         
         speechSlider.maximumValue = 2.0
@@ -48,23 +50,18 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
         updateTextField(value: 1.0)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        synthesizer.stopSpeaking(at: .immediate)
-        playButton.setTitle("Play", for: .normal)
-    }
-    
-    //MARK: - Webview Delegate Methods
-    
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
         wordWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
     
-    //MARK: - Helper Methods
-    
     func updateTextField(value: Double) {
         speechTextField.text = "\(value)"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        synthesizer.stopSpeaking(at: .immediate)
     }
     
     //MARK: - Actions
@@ -88,6 +85,7 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
         }
         
         synthesizer.stopSpeaking(at: .immediate)
+        playButton.setTitle("Play", for: .normal)
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
@@ -119,8 +117,36 @@ class FullTextViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    func bookDidChange() {
+        if let book = book {
+            self.tabBarController?.title = book.reference
+            let bookText = book.text.replacingOccurrences(of: "\n", with: "<br>")
+            wordWebView.loadHTMLString(bookText, baseURL: nil)
+        }
+    }
+    
     @IBAction func stopButtonTapped(_ sender: UIButton) {
         synthesizer.stopSpeaking(at: .immediate)
         playButton.setTitle("Play", for: .normal)
+    }
+    
+    @IBAction func screenSwipedRight(_ sender: UISwipeGestureRecognizer) {
+        if let parentVC = parent as? TextTabBar {
+            if parentVC.switchToBook(next: false) {
+                bookDidChange()
+                synthesizer.stopSpeaking(at: .immediate)
+                playButton.setTitle("Play", for: .normal)
+            }
+        }
+    }
+    
+    @IBAction func screenSwipedLeft(_ sender: UISwipeGestureRecognizer) {
+        if let parentVC = parent as? TextTabBar {
+            if parentVC.switchToBook(next: true) {
+                bookDidChange()
+                synthesizer.stopSpeaking(at: .immediate)
+                playButton.setTitle("Play", for: .normal)
+            }
+        }
     }
 }

@@ -17,6 +17,8 @@ class HelpTableViewController: UITableViewController, UIWebViewDelegate {
     @IBOutlet weak var fontWebView: UIWebView!
     @IBOutlet weak var fontTextField: UITextField!
     @IBOutlet weak var fontStepper: UIStepper!
+    @IBOutlet weak var articlesOfFaithImage: UIImageView!
+    @IBOutlet weak var classicPoetryImage: UIImageView!
     
     //MARK: - Properties
     
@@ -27,11 +29,15 @@ class HelpTableViewController: UITableViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         let value = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
-        fontStepper.minimumValue = 50
-        fontStepper.maximumValue = 300
+        fontStepper.minimumValue = 80
+        fontStepper.maximumValue = 200
         fontStepper.stepValue = 10.0
         fontStepper.value = Double(value)
         fontTextField.text = "\(value)"
+        articlesOfFaithImage.layer.cornerRadius = 10
+        articlesOfFaithImage.clipsToBounds = true
+        classicPoetryImage.layer.cornerRadius = 10
+        classicPoetryImage.clipsToBounds = true
         updateWebView()
     }
     
@@ -86,5 +92,17 @@ class HelpTableViewController: UITableViewController, UIWebViewDelegate {
         UserDefaults.standard.set(Int(sender.value), forKey: ScriptureController.Constant.fontSize)
         fontTextField.text = "\(Int(sender.value))"
         updateWebView()
+    }
+    
+    @IBAction func poetryTapped(_ sender: UITapGestureRecognizer) {
+        if let url = URL(string: "https://itunes.apple.com/us/app/classic-poetry-memorization/id523470453?mt=8") {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    @IBAction func articleOfFaithTapped(_ sender: UITapGestureRecognizer) {
+        if let url = URL(string: "https://itunes.apple.com/us/app/lds-memory-articles-faith/id396356844?mt=8") {
+            UIApplication.shared.openURL(url)
+        }
     }
 }

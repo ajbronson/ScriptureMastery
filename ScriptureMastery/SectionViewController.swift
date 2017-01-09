@@ -22,6 +22,8 @@ class SectionViewController: UIViewController, UIWebViewDelegate {
     var sections: [String] = []
     var displayingSections = 1
     var firstLetterOnly = false
+    var book: Book?
+    var books: [Book]?
     
     //MARK: - View Controller Lifecycle
     
@@ -29,9 +31,11 @@ class SectionViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         removeButton.layer.cornerRadius = 5
         addButton.layer.cornerRadius = 5
-        
         if let parentVC = parent as? TextTabBar,
-            let book = parentVC.book {
+            let book = parentVC.book,
+            let books = parentVC.books {
+            self.books = books
+            self.book = book
             self.tabBarController?.title = book.reference
             sections = book.text.getSections()
             reloadHTML()
@@ -39,7 +43,20 @@ class SectionViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    //MARK: - Webview Delegate Methods
+    //MARK: - Helper Methods
+    
+    func reloadHTML() {
+        var stringToShow = ""
+        for i in 0..<displayingSections {
+            if firstLetterOnly && i != displayingSections - 1 {
+                stringToShow += "\(sections[i].setFirstLetters()) | "
+            } else {
+                stringToShow += "\(sections[i]) | "
+            }
+        }
+        let bookText = stringToShow.replacingOccurrences(of: "\n", with: "<br>")
+        sectionWebView.loadHTMLString(bookText, baseURL: nil)
+    }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
@@ -52,24 +69,18 @@ class SectionViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    //MARK: - Helper Methods
-    
-    func reloadHTML() {
-        var stringToShow = ""
-        
-        for i in 0..<displayingSections {
-            if firstLetterOnly && i != displayingSections - 1 {
-                stringToShow += "\(sections[i].setFirstLetters()) | "
-            } else {
-                stringToShow += "\(sections[i]) | "
-            }
-        }
-        
-        sectionWebView.loadHTMLString(stringToShow, baseURL: nil)
-    }
-    
     func updateDisplaying() {
         displayingLabel.text = "Displaying Sections \(displayingSections) of \(sections.count)"
+    }
+    
+    func bookDidChange() {
+        if let book = book {
+            self.tabBarController?.title = book.reference
+            sections = book.text.getSections()
+            displayingSections = 1
+            reloadHTML()
+            updateDisplaying()
+        }
     }
     
     //MARK: - Actions
@@ -93,5 +104,21 @@ class SectionViewController: UIViewController, UIWebViewDelegate {
     @IBAction func firstLetterToggled(_ sender: UISwitch) {
         firstLetterOnly = sender.isOn
         reloadHTML()
+    }
+    
+    @IBAction func screenSwipedRight(_ sender: UISwipeGestureRecognizer) {
+        if let parentVC = parent as? TextTabBar {
+            if parentVC.switchToBook(next: false) {
+                bookDidChange()
+            }
+        }
+    }
+    
+    @IBAction func screenSwipedLeft(_ sender: UISwipeGestureRecognizer) {
+        if let parentVC = parent as? TextTabBar {
+            if parentVC.switchToBook(next: true) {
+                bookDidChange()
+            }
+        }
     }
 }

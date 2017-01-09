@@ -22,7 +22,10 @@ class MasterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.volumes = ScriptureController.shared.volumes()
-        self.volumes?.append(Volume(id: 0, name: "Retired Scrip. Masteries", retired: true))
+        let infoButton = UIButton(type: .infoLight)
+        infoButton.addTarget(self, action: #selector(showHelpVC), for: .touchUpInside)
+        let infoBarButtonItem = UIBarButtonItem(customView: infoButton)
+        navigationItem.leftBarButtonItem = infoBarButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +37,11 @@ class MasterTableViewController: UITableViewController {
         navigationController?.toolbar.isHidden = true
     }
     
-    //MARK: - Tableview Data source Methods
+    func showHelpVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "helpVC")
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if let green = greenStars,
@@ -42,7 +49,6 @@ class MasterTableViewController: UITableViewController {
             let yellow = yellowStars, green.count > 0 || blue.count > 0 || yellow.count > 0 {
             return 2
         }
-        
         return 1
     }
     
@@ -87,31 +93,37 @@ class MasterTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
+        return CGFloat(textSize)/2.5
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "masterCell") else { return UITableViewCell() }
             cell.textLabel?.text = volumes?[indexPath.row].name
+            let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: CGFloat(textSize)/6.2)
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "masterCell") else { return UITableViewCell() }
             cell.textLabel?.text = getStar(row: indexPath.row).0
+            let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: CGFloat(textSize)/6.2)
             return cell
         default:
             return UITableViewCell()
         }
     }
     
-    //MARK: - Prepare for Segue
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSlaveView" {
             if let index = tableView.indexPathForSelectedRow,
                 let volumes = volumes,
                 let destinationVC = segue.destination as? SlaveTableViewController {
-                
                 if index.section == 0 {
-                   destinationVC.updateSlave(volume: volumes[index.row])
+                    destinationVC.updateSlave(volume: volumes[index.row], showHeader: index.row == 0 ? true : false)
                 } else if index.section == 1 {
                     let starToPass = getStar(row: index.row)
                     if let books = starToPass.1 {
@@ -122,11 +134,8 @@ class MasterTableViewController: UITableViewController {
         }
     }
     
-    //MARK: - Helper Methods
-    
     func getStar(row: Int) -> (String, [Book]?, Star.Color) {
         var rows: [Int] = []
-        
         if let green = greenStars,
             green.count > 0 {
             rows.append(0)
@@ -161,7 +170,8 @@ class MasterTableViewController: UITableViewController {
         } else if row == 2 {
             return ("Yellow Stars", yellowStars, Star.Color.Yellow)
         }
-        
         return ("", nil, Star.Color.White)
     }
+    
+    
 }
