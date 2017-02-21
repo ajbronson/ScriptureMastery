@@ -9,6 +9,9 @@
 import Foundation
 
 struct Star {
+    
+    //MARK: - Star Colors
+    
     enum Color: String {
         case Green = "has_green_star"
         case Blue = "has_blue_star"

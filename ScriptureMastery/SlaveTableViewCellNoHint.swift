@@ -45,6 +45,12 @@ class SlaveTableViewCellNoHint: UITableViewCell {
     //MARK: - Actions
     
     @IBAction func starButtonTapped(_ sender: UIButton) {
+        if let id = UIDevice.current.identifierForVendor?.uuidString {
+            Flurry.logEvent("Star Clicked", withParameters: ["Unique ID" : id])
+        } else {
+            Flurry.logEvent("Star Clicked", withParameters: ["Unique ID" : "Unknown"])
+        }
+        
         if let book = book {
             if isInStarMode {
                 ScriptureController.shared.updateBookStar(book: book, hasYellowStar: 0, hasBlueStar: 0, hasGreenStar: 0)

@@ -22,6 +22,8 @@ class MasterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.volumes = ScriptureController.shared.volumes()
+        let retiredVolume = Volume(id: 0, name: "Retired Scr Masteries", retired: true)
+        volumes?.append(retiredVolume)
         let infoButton = UIButton(type: .infoLight)
         infoButton.addTarget(self, action: #selector(showHelpVC), for: .touchUpInside)
         let infoBarButtonItem = UIBarButtonItem(customView: infoButton)
@@ -37,11 +39,38 @@ class MasterTableViewController: UITableViewController {
         navigationController?.toolbar.isHidden = true
     }
     
-    func showHelpVC() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "helpVC")
-        navigationController?.pushViewController(vc, animated: true)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let count = UserDefaults.standard.integer(forKey: "launchCount")
+        
+        if count == 3 {
+            let alert = UIAlertController(title: "Like the app?", message: "Please spend 1 minute writing a brief review!", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "No Thanks", style: .cancel) { (action) in
+                if let id = UIDevice.current.identifierForVendor?.uuidString {
+                    Flurry.logEvent("Declined Invitation To Review", withParameters: ["Unique ID" : id])
+                } else {
+                    Flurry.logEvent("Declined Invitation To Review", withParameters: ["Unique ID" : "Unknown"])
+                }
+            }
+            let okAction = UIAlertAction(title: "Sure!", style: .default) { (action) in
+                if let id = UIDevice.current.identifierForVendor?.uuidString {
+                    Flurry.logEvent("Accepted Invitation To Review", withParameters: ["Unique ID" : id])
+                } else {
+                    Flurry.logEvent("Accepted Invitation To Review", withParameters: ["Unique ID" : "Unknown"])
+                }
+                
+                if let url = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=389594409&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
+                    UIApplication.shared.openURL(url)
+                }
+            }
+            alert.addAction(cancelAction)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
     }
+    
+    //MARK: - TableView Methods
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if let green = greenStars,
@@ -49,6 +78,7 @@ class MasterTableViewController: UITableViewController {
             let yellow = yellowStars, green.count > 0 || blue.count > 0 || yellow.count > 0 {
             return 2
         }
+        
         return 1
     }
     
@@ -87,7 +117,6 @@ class MasterTableViewController: UITableViewController {
             }
             
             return starCount
-            
         default:
             return 0
         }
@@ -117,25 +146,17 @@ class MasterTableViewController: UITableViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toSlaveView" {
-            if let index = tableView.indexPathForSelectedRow,
-                let volumes = volumes,
-                let destinationVC = segue.destination as? SlaveTableViewController {
-                if index.section == 0 {
-                    destinationVC.updateSlave(volume: volumes[index.row], showHeader: index.row == 0 ? true : false)
-                } else if index.section == 1 {
-                    let starToPass = getStar(row: index.row)
-                    if let books = starToPass.1 {
-                        destinationVC.updateSlaveFromStar(books: books, title: starToPass.0, starColor: starToPass.2)
-                    }
-                }
-            }
-        }
+    //MARK: - Helper Methods
+    
+    func showHelpVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "helpVC")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func getStar(row: Int) -> (String, [Book]?, Star.Color) {
         var rows: [Int] = []
+        
         if let green = greenStars,
             green.count > 0 {
             rows.append(0)
@@ -170,8 +191,31 @@ class MasterTableViewController: UITableViewController {
         } else if row == 2 {
             return ("Yellow Stars", yellowStars, Star.Color.Yellow)
         }
+        
         return ("", nil, Star.Color.White)
     }
     
+    //MARK: - Prepare for Segue
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSlaveView" {
+            if let index = tableView.indexPathForSelectedRow,
+                let volumes = volumes,
+                let destinationVC = segue.destination as? SlaveTableViewController {
+                if index.section == 0 {
+                    var show = false
+                    if index.row == 0 || index.row == 5 {
+                        show = true
+                    }
+                    destinationVC.updateSlave(volume: volumes[index.row], showHeader: show)
+                } else if index.section == 1 {
+                    let starToPass = getStar(row: index.row)
+                    
+                    if let books = starToPass.1 {
+                        destinationVC.updateSlaveFromStar(books: books, title: starToPass.0, starColor: starToPass.2)
+                    }
+                }
+            }
+        }
+    }
 }

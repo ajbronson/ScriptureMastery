@@ -27,7 +27,7 @@ class ScriptureController {
     
     var dbQueue: DatabaseQueue!
     
-    //MARK: - Init
+    //MARK: - Initializer
     
     fileprivate init() {
         let fileManager = FileManager.default
@@ -54,9 +54,11 @@ class ScriptureController {
     func volumeNameForID(id: Int) -> String {
         return try! dbQueue.inDatabase({ (db: Database) -> String in
             var name: String = ""
+            
             for row in try Row.fetchAll(db, "select * from canon where id = \(id)") {
                 name = row.value(named: "name")
             }
+            
             return name
         })
     }
@@ -133,13 +135,19 @@ class ScriptureController {
         }
     }
     
+    //MARK: - Helper Methods
+    
     func getFirstLetterOfStringWithMultipleStrings(stringToUse: String, addNumberOfBreaks: Int) -> String {
         var stringToReturn = ""
+        var stringToUse = stringToUse
+        stringToUse = stringToUse.trimmingCharacters(in: .whitespaces)
         if var first = stringToUse.characters.first {
-            while first == "(" || first == "\"" || first == "'" {
+            while first == "(" || first == "\"" || first == "'" || first == "\"" || first == "“" || first == "’" || first == "‘" {
                 let removeIndex = stringToUse.index(stringToUse.startIndex, offsetBy: 0)
                 var modifiedString = stringToUse
                 modifiedString.remove(at: removeIndex)
+                stringToUse = modifiedString
+                
                 if let newFirst = modifiedString.characters.first {
                     first = newFirst
                 }
@@ -147,6 +155,7 @@ class ScriptureController {
             
             stringToReturn += "\(String(describing: first))"
             stringToReturn += containsPunction(word: stringToUse)
+            
             for _ in 0..<addNumberOfBreaks {
                 stringToReturn += "<br> "
             }
@@ -160,21 +169,24 @@ class ScriptureController {
                 return "\(String(character)) "
             }
         }
-        return " "
         
+        return " "
     }
     
     func removeEmptyElementsFromArray(array: [String]) -> [String] {
         var array = array
         var indexToRemove: [Int] = []
+        
         for i in 0..<array.count {
             if array[i] == "" {
                 indexToRemove.append(i)
             }
         }
+        
         for i in 0..<indexToRemove.count {
             array.remove(at: (indexToRemove[i] - i))
         }
+        
         return array
     }
 }

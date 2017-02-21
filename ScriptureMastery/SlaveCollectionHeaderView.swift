@@ -10,7 +10,11 @@ import UIKit
 
 class SlaveCollectionHeaderView: UICollectionReusableView {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var headerTitle: UILabel!
+    
+    //MARK: - Helper Methods
     
     func updateHeader(title: String) {
         headerTitle.text = title

@@ -10,6 +10,9 @@ import Foundation
 import GRDB
 
 class Book: Equatable {
+    
+    //MARK: - Properties
+    
     let id: Int
     let reference: String
     let text: String
@@ -19,6 +22,8 @@ class Book: Equatable {
     var greenStar: Bool?
     var yellowStar: Bool?
     var memorized: Bool?
+    
+    //MARK: - Initializer
     
     init(row: Row) {
         id = row.value(named: "id")

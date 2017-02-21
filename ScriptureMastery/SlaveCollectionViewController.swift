@@ -10,21 +10,28 @@ import UIKit
 
 class SlaveCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    //MARK: - Properties
+    
     var books: [Book]?
     var showHints = false
     var isInStarMode = false
     var showHeader = false
     var starCanonIDs:[Int] = []
     
+    //MARK: - View Controller Lifecycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+    
+    //MARK: - Helper Methods
     
     func updateWith(books: [Book], title: String?, starMode: Bool, showHeader: Bool) {
         self.books = books
         self.title = title
         self.isInStarMode = starMode
         self.showHeader = showHeader
+        
         if isInStarMode || showHeader {
             organizeBooks()
         }
@@ -36,6 +43,8 @@ class SlaveCollectionViewController: UICollectionViewController, UICollectionVie
         self.books = sortedBooks
         starCanonIDs = sortedBooks.flatMap({$0.canonID})
     }
+    
+    //MARK: - CollectionView Methods
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isInStarMode || showHeader  {
@@ -65,6 +74,7 @@ class SlaveCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as? SlaveCollectionHeaderView else { return UICollectionReusableView() }
+        
         if isInStarMode || showHeader  {
             let singleCanonIDs = (Array(Set(starCanonIDs)))
             let sortedIDs = singleCanonIDs.sorted{$0 < $1}
@@ -73,6 +83,7 @@ class SlaveCollectionViewController: UICollectionViewController, UICollectionVie
             return headerView
             
         }
+        
         return headerView
     }
     
@@ -95,6 +106,7 @@ class SlaveCollectionViewController: UICollectionViewController, UICollectionVie
         } else {
             cell.updateWith(book: books[indexPath.row], showHints: showHints)
         }
+        
         cell.layer.shadowColor = UIColor(colorLiteralRed: 86.0/255.0, green: 128.0/255.0, blue: 91.0/255.0, alpha: 1.0).cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 1)
         cell.layer.shadowRadius = 8
@@ -104,6 +116,12 @@ class SlaveCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let id = UIDevice.current.identifierForVendor?.uuidString {
+            Flurry.logEvent("Flashcard Cell Tapped", withParameters: ["Unique ID" : id])
+        } else {
+            Flurry.logEvent("Flashcard Cell Tapped", withParameters: ["Unique ID" : "Unknown"])
+        }
+        
         if let cell = collectionView.cellForItem(at: indexPath) as? SlaveCollectionViewCell{
             UIView.transition(with: cell.customView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
         }
@@ -112,17 +130,22 @@ class SlaveCollectionViewController: UICollectionViewController, UICollectionVie
     //MARK: - Actions
     
     @IBAction func showHintButtonTapped(_ sender: UIBarButtonItem) {
+        if let id = UIDevice.current.identifierForVendor?.uuidString {
+            Flurry.logEvent("Show Hint Tapped", withParameters: ["Unique ID" : id])
+        } else {
+            Flurry.logEvent("Show Hint Tapped", withParameters: ["Unique ID" : "Unknown"])
+        }
+        
         sender.title = showHints ? "Show Hints" : "Hide Hints"
         showHints = !showHints
         collectionView?.reloadData()
-        
     }
     
     @IBAction func toListModeButtonTapped(_ sender: UIBarButtonItem) {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    //MARK: - Prepare for segue
+    //MARK: - Prepare for Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toLargeCell" {

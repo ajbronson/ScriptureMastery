@@ -25,6 +25,8 @@ class RandomWordViewController: UIViewController, UIWebViewDelegate {
     var book: Book?
     var books: [Book]?
     
+    //MARK: - View Controller Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         wordSlider.maximumValue = 25
@@ -45,18 +47,24 @@ class RandomWordViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    //MARK: - WebView Delegate Method
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
         wordWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
+    
+    //MARK: - Helper Methods
     
     func setCurrentText() {
         if let book = book {
             let myText = book.text.replacingOccurrences(of: "\n", with: "<br>")
             let stringArray = myText.getStringArray()
             currentText = []
+            
             for string in stringArray {
                 let array = string.components(separatedBy: "<br>")
+                
                 for i in 0..<(array.count) {
                     if array[i] == "" {
                         currentText.append("<br>")
@@ -92,6 +100,7 @@ class RandomWordViewController: UIViewController, UIWebViewDelegate {
             }
             
             indexesRemoved.append(random)
+            
             if currentText[random] == "<br>" {
                 removeElements(count: 1)
             } else {
@@ -115,6 +124,12 @@ class RandomWordViewController: UIViewController, UIWebViewDelegate {
     }
     
     @IBAction func removeButtonTapped(_ sender: UIButton) {
+        if let id = UIDevice.current.identifierForVendor?.uuidString {
+            Flurry.logEvent("Random Word Removed", withParameters: ["Unique ID" : id])
+        } else {
+            Flurry.logEvent("Random Word Removed", withParameters: ["Unique ID" : "Unknown"])
+        }
+        
         removeElements(count: Int(wordSlider.value))
         reloadHTML()
     }

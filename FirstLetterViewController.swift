@@ -26,6 +26,8 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
     var book: Book?
     var books: [Book]?
     
+    //MARK: - View Controller Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         letterSlider.maximumValue = 25
@@ -34,6 +36,7 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
         letterTextField.text = "5"
         removeButton.layer.cornerRadius = 5
         resetButton.layer.cornerRadius = 5
+        
         if let parentVC = parent as? TextTabBar,
             let book = parentVC.book,
             let books = parentVC.books {
@@ -47,10 +50,14 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    //MARK: - WebView Delegate Method
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
         wordWebView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(textSize)%%'")
     }
+    
+    //MARK: - Helper Methods
     
     func reloadHTML() {
         let bookText = currentText.joined(separator: " ").replacingOccurrences(of: "\n", with: "<br>")
@@ -71,6 +78,7 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
             }
             
             indexesRemoved.append(random)
+            
             if currentText[random] == "<br>" {
                 removeElements(count: 1)
             } else {
@@ -88,6 +96,7 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
             reloadHTML()
         }
     }
+    
     //MARK: - Actions
     
     @IBAction func letterSliderDidChange(_ sender: UISlider) {
@@ -103,6 +112,12 @@ class FirstLetterViewController: UIViewController, UIWebViewDelegate {
     }
 
     @IBAction func removeButtonTapped(_ sender: UIButton) {
+        if let id = UIDevice.current.identifierForVendor?.uuidString {
+            Flurry.logEvent("First Letter Removed", withParameters: ["Unique ID" : id])
+        } else {
+            Flurry.logEvent("First Letter Removed", withParameters: ["Unique ID" : "Unknown"])
+        }
+        
         removeElements(count: Int(letterSlider.value))
         reloadHTML()
     }

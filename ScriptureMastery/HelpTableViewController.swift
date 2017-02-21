@@ -47,7 +47,7 @@ class HelpTableViewController: UITableViewController, UIWebViewDelegate {
         fontWebView.loadHTMLString("Example Font Size", baseURL: nil)
     }
     
-    //MARK: - Webview Delegate Methods
+    //MARK: - Webview Delegate Method
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let textSize = UserDefaults.standard.integer(forKey: ScriptureController.Constant.fontSize)
@@ -73,6 +73,12 @@ class HelpTableViewController: UITableViewController, UIWebViewDelegate {
     }
     
     @IBAction func emailButtonTapped(_ sender: UIButton) {
+        if let id = UIDevice.current.identifierForVendor?.uuidString {
+            Flurry.logEvent("Email Button Tapped", withParameters: ["Unique ID" : id])
+        } else {
+            Flurry.logEvent("Email Button Tapped", withParameters: ["Unique ID" : "Unknown"])
+        }
+        
         if let url = URL(string: "mailto://ldsmemory.scripturemasteryapp@gmail.com") {
             UIApplication.shared.openURL(url)
         }
@@ -89,18 +95,36 @@ class HelpTableViewController: UITableViewController, UIWebViewDelegate {
     }
     
     @IBAction func fontStepperTapped(_ sender: UIStepper) {
+        if let id = UIDevice.current.identifierForVendor?.uuidString {
+            Flurry.logEvent("Font Changed", withParameters: ["Unique ID" : id, "Value" : sender.value])
+        } else {
+            Flurry.logEvent("Font Changed", withParameters: ["Unique ID" : "Unknown", "Value" : sender.value])
+        }
+        
         UserDefaults.standard.set(Int(sender.value), forKey: ScriptureController.Constant.fontSize)
         fontTextField.text = "\(Int(sender.value))"
         updateWebView()
     }
     
     @IBAction func poetryTapped(_ sender: UITapGestureRecognizer) {
+        if let id = UIDevice.current.identifierForVendor?.uuidString {
+            Flurry.logEvent("View Poetry In App Store", withParameters: ["Unique ID" : id])
+        } else {
+            Flurry.logEvent("View Poetry In App Store", withParameters: ["Unique ID" : "Unknown"])
+        }
+        
         if let url = URL(string: "https://itunes.apple.com/us/app/classic-poetry-memorization/id523470453?mt=8") {
             UIApplication.shared.openURL(url)
         }
     }
     
     @IBAction func articleOfFaithTapped(_ sender: UITapGestureRecognizer) {
+        if let id = UIDevice.current.identifierForVendor?.uuidString {
+            Flurry.logEvent("View Articles of Faith In App Store", withParameters: ["Unique ID" : id])
+        } else {
+            Flurry.logEvent("View Articles of Faith In App Store", withParameters: ["Unique ID" : "Unknown"])
+        }
+        
         if let url = URL(string: "https://itunes.apple.com/us/app/lds-memory-articles-faith/id396356844?mt=8") {
             UIApplication.shared.openURL(url)
         }

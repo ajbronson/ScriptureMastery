@@ -34,6 +34,9 @@
 		21F6E5CE1E04EFE0007BDA50 /* TextTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6E5CD1E04EFE0007BDA50 /* TextTabBar.swift */; };
 		21F6E5D01E04F475007BDA50 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6E5CF1E04F475007BDA50 /* StringHelper.swift */; };
 		21F6E5D31E050731007BDA50 /* SectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6E5D21E050731007BDA50 /* SectionViewController.swift */; };
+		21F74C781E51428D0089928B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F74C771E51428D0089928B /* Security.framework */; };
+		21F74C7A1E5142A20089928B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F74C791E5142A20089928B /* SystemConfiguration.framework */; };
+		21F74C7D1E5145920089928B /* libFlurry_7.9.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F74C7C1E5145920089928B /* libFlurry_7.9.2.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,12 @@
 		21F6E5CD1E04EFE0007BDA50 /* TextTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextTabBar.swift; sourceTree = "<group>"; };
 		21F6E5CF1E04F475007BDA50 /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		21F6E5D21E050731007BDA50 /* SectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewController.swift; sourceTree = "<group>"; };
+		21F74C771E51428D0089928B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		21F74C791E5142A20089928B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		21F74C7B1E5145920089928B /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		21F74C7C1E5145920089928B /* libFlurry_7.9.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_7.9.2.a; sourceTree = "<group>"; };
+		21F74C7E1E5145DC0089928B /* ScriptureMastery-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScriptureMastery-Bridging-Header.h"; sourceTree = "<group>"; };
+		21F74C7F1E5147ED0089928B /* FlurrySessionBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurrySessionBuilder.h; sourceTree = "<group>"; };
 		8760151D4AC17541A54776F9 /* Pods-ScriptureMastery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScriptureMastery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScriptureMastery/Pods-ScriptureMastery.debug.xcconfig"; sourceTree = "<group>"; };
 		93279E93E79DB3511E050417 /* Pods_ScriptureMastery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScriptureMastery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E725FD7989B5959D0B7BDB /* Pods-ScriptureMastery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScriptureMastery.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScriptureMastery/Pods-ScriptureMastery.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +105,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F74C7D1E5145920089928B /* libFlurry_7.9.2.a in Frameworks */,
+				21F74C7A1E5142A20089928B /* SystemConfiguration.framework in Frameworks */,
+				21F74C781E51428D0089928B /* Security.framework in Frameworks */,
 				1FB03B76676F719237E41BC5 /* Pods_ScriptureMastery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +132,8 @@
 		1F1DA9092BA1471A8419831F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				21F74C791E5142A20089928B /* SystemConfiguration.framework */,
+				21F74C771E51428D0089928B /* Security.framework */,
 				93279E93E79DB3511E050417 /* Pods_ScriptureMastery.framework */,
 			);
 			name = Frameworks;
@@ -212,6 +226,7 @@
 		214031BC1DFBC5FF00CA4BEE /* ScriptureMastery */ = {
 			isa = PBXGroup;
 			children = (
+				21F74C9B1E5169680089928B /* Flurry */,
 				21F6E5D11E04F47B007BDA50 /* Helpers */,
 				212AA87E1E04A09A000374F9 /* ModelController */,
 				212AA87D1E04A095000374F9 /* Model */,
@@ -259,6 +274,17 @@
 				21F6E5CF1E04F475007BDA50 /* StringHelper.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		21F74C9B1E5169680089928B /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				21F74C7F1E5147ED0089928B /* FlurrySessionBuilder.h */,
+				21F74C7B1E5145920089928B /* Flurry.h */,
+				21F74C7C1E5145920089928B /* libFlurry_7.9.2.a */,
+				21F74C7E1E5145DC0089928B /* ScriptureMastery-Bridging-Header.h */,
+			);
+			name = Flurry;
 			sourceTree = "<group>";
 		};
 		E3C0C61FAE0E84F0EBEC9247 /* Pods */ = {
@@ -636,8 +662,13 @@
 				INFOPLIST_FILE = ScriptureMastery/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ScriptureMastery",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ldsmemory.scripturemastery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ScriptureMastery/ScriptureMastery-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -653,8 +684,13 @@
 				INFOPLIST_FILE = ScriptureMastery/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ScriptureMastery",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ldsmemory.scripturemastery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ScriptureMastery/ScriptureMastery-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
